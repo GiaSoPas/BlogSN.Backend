@@ -1,5 +1,5 @@
-using BlogSN.Backend.Models;
 using BlogSN.Backend.Services;
+using BlogSN.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogSN.Backend.Controllers

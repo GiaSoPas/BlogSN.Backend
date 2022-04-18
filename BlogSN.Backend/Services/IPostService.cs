@@ -1,4 +1,4 @@
-﻿using BlogSN.Backend.Models;
+﻿using BlogSN.Models;
 
 namespace BlogSN.Backend.Services;
 

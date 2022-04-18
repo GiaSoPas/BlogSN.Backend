@@ -1,5 +1,5 @@
 ﻿using BlogSN.Backend.Data;
-using BlogSN.Backend.Models;
+using BlogSN.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogSN.Backend.Services;
@@ -15,7 +15,7 @@ public class PostService : IPostService
 
     public async Task<IEnumerable<Post>> GetPosts()
     {
-        var tasks = await _context.Posts.ToListAsync();
+        var tasks = await _context.Post.ToListAsync();
 
         return tasks;
     }
