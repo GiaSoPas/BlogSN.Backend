@@ -26,6 +26,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Identity\Identity.csproj" />
       <ProjectReference Include="..\Models\Models.csproj" />
     </ItemGroup>
 

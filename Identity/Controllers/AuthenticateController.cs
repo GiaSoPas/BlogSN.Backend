@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -118,6 +119,12 @@ namespace Identity.Controllers
                 return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token), expiration = token.ValidTo });
             }
             return Unauthorized();
+        }
+        [HttpGet]
+        [Authorize]
+        public async Task<string> CheckAuthrize()
+        {
+            return "a";
         }
     }
 }
