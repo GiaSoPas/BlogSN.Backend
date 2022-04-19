@@ -21,9 +21,9 @@ public class Post
 
     public DateTime DateCreated { get; set; }
 
-    public Category Category { get; set; }
-
     public int CategoryId { get; set; }
+
+    public Category Category { get; set; }
 
     public string? ApplicationUserId { get; set; }
 
