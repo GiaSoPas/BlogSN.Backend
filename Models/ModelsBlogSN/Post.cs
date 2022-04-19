@@ -8,7 +8,7 @@ public class Post
 
     public Post()
     {
-        DateCreated = DateTime.Now;
+        DateCreated = DateTime.UtcNow;
     }
 
     [Key]

@@ -198,6 +198,31 @@ namespace Identity.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "88aec81d-b5b0-45f3-8721-8d41560b02f7", 0, "a66c189b-6cf3-46df-bc58-5a136ef93a8f", "1@mail.ru", false, false, null, null, null, "da", null, false, "18208818-2141-4442-9617-63796cc38296", false, null });
+
+            migrationBuilder.InsertData(
+                table: "Category",
+                columns: new[] { "Id", "Description", "Name" },
+                values: new object[,]
+                {
+                    { 1, null, "Спорт" },
+                    { 2, null, "Киберспорт" },
+                    { 3, null, "Cпортмашины" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Post",
+                columns: new[] { "Id", "ApplicationUserId", "CategoryId", "Content", "DateCreated", "Description", "Title" },
+                values: new object[,]
+                {
+                    { 1, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 1, "Про спорт и все такое", new DateTime(2022, 4, 19, 21, 45, 29, 637, DateTimeKind.Utc).AddTicks(2157), null, "Спорт" },
+                    { 2, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 2, "Про киберспорт и все такое", new DateTime(2022, 4, 19, 21, 45, 29, 637, DateTimeKind.Utc).AddTicks(2160), null, "Киберспорт" },
+                    { 3, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 3, "Про спортмашины и все такое", new DateTime(2022, 4, 19, 21, 45, 29, 637, DateTimeKind.Utc).AddTicks(2161), null, "Cпортмашины" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
