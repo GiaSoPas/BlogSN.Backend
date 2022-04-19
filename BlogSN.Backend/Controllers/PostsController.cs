@@ -8,32 +8,35 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BlogSN.Backend.Data;
 using BlogSN.Models;
+using BlogSN.Backend.Services;
 
 namespace BlogSN.Backend.Controllers
 {
     [Route("api/[controller]")]
+    [Produces("application/json")]
     [ApiController]
     public class PostsController : ControllerBase
     {
-        private readonly BlogSnDbContext _context;
+        private readonly IPostService _service;
 
-        public PostsController(BlogSnDbContext context)
+
+        public PostsController(IPostService service)
         {
-            _context = context;
+            _service = service;
         }
 
         // GET: api/Posts
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Post>>> GetPost()
+        public async Task<ActionResult<IEnumerable<Post>>> GetPosts(CancellationToken cancellationToken)
         {
-            return await _context.Post.ToListAsync();
+            return Ok(await _service.GetPosts(cancellationToken));
         }
 
         // GET: api/Posts/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Post>> GetPost(int id)
+        public async Task<ActionResult<Post>> GetPost(int id, CancellationToken cancellationToken)
         {
-            var post = await _context.Post.FindAsync(id);
+            var post = await _service.GetPostById(id, cancellationToken);
 
             if (post == null)
             {
@@ -46,30 +49,16 @@ namespace BlogSN.Backend.Controllers
         // PUT: api/Posts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPost(int id, Post post)
+        public async Task<IActionResult> PutPost(int id, [FromBody]Post post, CancellationToken cancellationToken)
         {
             if (id != post.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(post).State = EntityState.Modified;
+            await _service.UpdatePostById(id, post, cancellationToken);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PostExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+           
 
             return NoContent();
         }
@@ -77,33 +66,21 @@ namespace BlogSN.Backend.Controllers
         // POST: api/Posts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Post>> PostPost(Post post)
+        public async Task<ActionResult<Post>> PostPost(Post post, CancellationToken cancellationToken)
         {
-            _context.Post.Add(post);
-            await _context.SaveChangesAsync();
+            await _service.CreatePost(post, cancellationToken);
 
             return CreatedAtAction("GetPost", new { id = post.Id }, post);
         }
 
         // DELETE: api/Posts/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePost(int id)
+        public async Task<IActionResult> DeletePost(int id, CancellationToken cancellationToken)
         {
-            var post = await _context.Post.FindAsync(id);
-            if (post == null)
-            {
-                return NotFound();
-            }
-
-            _context.Post.Remove(post);
-            await _context.SaveChangesAsync();
-
+            await _service.DeletePostById(id, cancellationToken);
+            
             return NoContent();
         }
 
-        private bool PostExists(int id)
-        {
-            return _context.Post.Any(e => e.Id == id);
-        }
     }
 }
