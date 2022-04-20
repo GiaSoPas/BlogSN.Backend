@@ -175,11 +175,11 @@ namespace Identity.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Rating = table.Column<int>(type: "integer", nullable: false),
                     Title = table.Column<string>(type: "text", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
                     Content = table.Column<string>(type: "text", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    RatingCount = table.Column<int>(type: "integer", nullable: false),
                     CategoryId = table.Column<int>(type: "integer", nullable: false),
                     ApplicationUserId = table.Column<string>(type: "text", nullable: true)
                 },
@@ -227,10 +227,31 @@ namespace Identity.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Rating",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    LikeStatus = table.Column<bool>(type: "boolean", nullable: false),
+                    PostId = table.Column<int>(type: "integer", nullable: false),
+                    ApplicationUserId = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rating", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Rating_Post_PostId",
+                        column: x => x.PostId,
+                        principalTable: "Post",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "88aec81d-b5b0-45f3-8721-8d41560b02f7", 0, "44c7c30d-edc0-4062-bacb-7d40d30eb01c", "1@mail.ru", false, false, null, null, null, "da", null, false, "40384223-7acd-4d8a-984f-3468638d32d1", false, null });
+                values: new object[] { "88aec81d-b5b0-45f3-8721-8d41560b02f7", 0, "72ff1838-e5f0-4ab9-8d10-648ee9bed81d", "1@mail.ru", false, false, null, null, null, "EtoHash", null, false, "286d60b3-dd9a-4b8a-951b-819985c5c1a8", false, "Vanya" });
 
             migrationBuilder.InsertData(
                 table: "Category",
@@ -244,13 +265,35 @@ namespace Identity.Migrations
 
             migrationBuilder.InsertData(
                 table: "Post",
-                columns: new[] { "Id", "ApplicationUserId", "CategoryId", "Content", "DateCreated", "Description", "Rating", "Title" },
+                columns: new[] { "Id", "ApplicationUserId", "CategoryId", "Content", "DateCreated", "Description", "RatingCount", "Title" },
                 values: new object[,]
                 {
-                    { 1, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 1, "Про спорт и все такое", new DateTime(2022, 4, 20, 16, 55, 41, 932, DateTimeKind.Utc).AddTicks(4883), null, 0, "Спорт" },
-                    { 2, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 2, "Про киберспорт и все такое", new DateTime(2022, 4, 20, 16, 55, 41, 932, DateTimeKind.Utc).AddTicks(4886), null, 0, "Киберспорт" },
-                    { 3, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 2, "Про киберспорт и все такое", new DateTime(2022, 4, 20, 16, 55, 41, 932, DateTimeKind.Utc).AddTicks(4887), null, 0, "Киберспорт" },
-                    { 4, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 3, "Про спортмашины и все такое", new DateTime(2022, 4, 20, 16, 55, 41, 932, DateTimeKind.Utc).AddTicks(4887), null, 0, "Cпортмашины" }
+                    { 1, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 1, "Про спорт и все такое", new DateTime(2022, 4, 20, 22, 23, 38, 680, DateTimeKind.Utc).AddTicks(6654), "Описание спорта", 0, "Спорт" },
+                    { 2, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 2, "Про киберспорт и все такое", new DateTime(2022, 4, 20, 22, 23, 38, 680, DateTimeKind.Utc).AddTicks(6658), "Описание киберспорта", 0, "Киберспорт" },
+                    { 3, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 2, "Про киберспорт и все такое", new DateTime(2022, 4, 20, 22, 23, 38, 680, DateTimeKind.Utc).AddTicks(6660), "Описание киберспорта", 0, "Киберспорт" },
+                    { 4, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 3, "Про спортмашины и все такое", new DateTime(2022, 4, 20, 22, 23, 38, 680, DateTimeKind.Utc).AddTicks(6661), "Описание спортмашины", 0, "Cпортмашины" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Comment",
+                columns: new[] { "Id", "ApplicationUserId", "Content", "CreatedDate", "PostId" },
+                values: new object[,]
+                {
+                    { 1, "88aec81d-b5b0-45f3-8721-8d41560b02f7", "Норм тема", new DateTime(2022, 4, 20, 22, 23, 38, 680, DateTimeKind.Utc).AddTicks(6683), 1 },
+                    { 2, "88aec81d-b5b0-45f3-8721-8d41560b02f7", "Норм тема", new DateTime(2022, 4, 20, 22, 23, 38, 680, DateTimeKind.Utc).AddTicks(6684), 1 },
+                    { 3, "88aec81d-b5b0-45f3-8721-8d41560b02f7", "Норм тема", new DateTime(2022, 4, 20, 22, 23, 38, 680, DateTimeKind.Utc).AddTicks(6686), 2 },
+                    { 4, "88aec81d-b5b0-45f3-8721-8d41560b02f7", "Норм тема", new DateTime(2022, 4, 20, 22, 23, 38, 680, DateTimeKind.Utc).AddTicks(6687), 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Rating",
+                columns: new[] { "Id", "ApplicationUserId", "LikeStatus", "PostId" },
+                values: new object[,]
+                {
+                    { 1, "88aec81d-b5b0-45f3-8721-8d41560b02f7", true, 1 },
+                    { 2, "88aec81d-b5b0-45f3-8721-8d41560b02f7", true, 1 },
+                    { 3, "88aec81d-b5b0-45f3-8721-8d41560b02f7", false, 2 },
+                    { 4, "88aec81d-b5b0-45f3-8721-8d41560b02f7", false, 2 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -309,6 +352,11 @@ namespace Identity.Migrations
                 name: "IX_Post_CategoryId",
                 table: "Post",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rating_PostId",
+                table: "Rating",
+                column: "PostId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -330,6 +378,9 @@ namespace Identity.Migrations
 
             migrationBuilder.DropTable(
                 name: "Comment");
+
+            migrationBuilder.DropTable(
+                name: "Rating");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
