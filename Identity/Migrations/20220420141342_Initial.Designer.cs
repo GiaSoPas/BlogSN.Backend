@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Identity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220420123139_Intial")]
-    partial class Intial
+    [Migration("20220420141342_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,23 +41,6 @@ namespace Identity.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Category");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Спорт"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Киберспорт"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Cпортмашины"
-                        });
                 });
 
             modelBuilder.Entity("BlogSN.Models.Post", b =>
@@ -71,7 +54,7 @@ namespace Identity.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("text");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Content")
@@ -93,44 +76,6 @@ namespace Identity.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Post");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
-                            CategoryId = 1,
-                            Content = "Про спорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3250),
-                            Title = "Спорт"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
-                            CategoryId = 2,
-                            Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3253),
-                            Title = "Киберспорт"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
-                            CategoryId = 2,
-                            Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3254),
-                            Title = "Киберспорт"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
-                            CategoryId = 3,
-                            Content = "Про спортмашины и все такое",
-                            DateCreated = new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3254),
-                            Title = "Cпортмашины"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -327,21 +272,6 @@ namespace Identity.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "4c87e28d-ca28-4ac5-8267-42d715d35b3e",
-                            Email = "1@mail.ru",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PasswordHash = "da",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "c5cfd9f3-47b4-4582-a8e0-ce74d25335e1",
-                            TwoFactorEnabled = false
-                        });
                 });
 
             modelBuilder.Entity("BlogSN.Models.Post", b =>
@@ -350,11 +280,11 @@ namespace Identity.Migrations
                         .WithMany("Posts")
                         .HasForeignKey("ApplicationUserId");
 
-                    b.HasOne("BlogSN.Models.Category", null)
+                    b.HasOne("BlogSN.Models.Category", "Category")
                         .WithMany("Posts")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

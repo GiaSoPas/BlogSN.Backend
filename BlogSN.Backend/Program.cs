@@ -9,6 +9,7 @@ using Microsoft.OpenApi.Models;
 using Models.ModelsIdentity.IdentityAuth;
 using Newtonsoft.Json;
 using System.Text;
+using BlogSN.Backend.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -133,6 +134,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors(MyAllowSpecificOrigins);
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseHttpsRedirection();
 

@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Identity.Migrations
 {
-    public partial class Intial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -179,7 +179,7 @@ namespace Identity.Migrations
                     Description = table.Column<string>(type: "text", nullable: true),
                     Content = table.Column<string>(type: "text", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    CategoryId = table.Column<int>(type: "integer", nullable: false),
+                    CategoryId = table.Column<int>(type: "integer", nullable: true),
                     ApplicationUserId = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
@@ -194,34 +194,7 @@ namespace Identity.Migrations
                         name: "FK_Post_Category_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Category",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.InsertData(
-                table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "88aec81d-b5b0-45f3-8721-8d41560b02f7", 0, "4c87e28d-ca28-4ac5-8267-42d715d35b3e", "1@mail.ru", false, false, null, null, null, "da", null, false, "c5cfd9f3-47b4-4582-a8e0-ce74d25335e1", false, null });
-
-            migrationBuilder.InsertData(
-                table: "Category",
-                columns: new[] { "Id", "Description", "Name" },
-                values: new object[,]
-                {
-                    { 1, null, "Спорт" },
-                    { 2, null, "Киберспорт" },
-                    { 3, null, "Cпортмашины" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Post",
-                columns: new[] { "Id", "ApplicationUserId", "CategoryId", "Content", "DateCreated", "Description", "Title" },
-                values: new object[,]
-                {
-                    { 1, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 1, "Про спорт и все такое", new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3250), null, "Спорт" },
-                    { 2, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 2, "Про киберспорт и все такое", new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3253), null, "Киберспорт" },
-                    { 3, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 2, "Про киберспорт и все такое", new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3254), null, "Киберспорт" },
-                    { 4, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 3, "Про спортмашины и все такое", new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3254), null, "Cпортмашины" }
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
