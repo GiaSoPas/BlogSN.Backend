@@ -9,7 +9,7 @@ public class Post
 
     public Post()
     {
-        DateCreated = DateTime.Now;
+        DateCreated = DateTime.UtcNow;
     }
 
     [Key]
@@ -26,4 +26,5 @@ public class Post
     public Category? Category { get; set; }
     
     public string? ApplicationUserId { get; set; }
+
 }

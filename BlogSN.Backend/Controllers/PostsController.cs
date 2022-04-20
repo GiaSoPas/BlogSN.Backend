@@ -39,6 +39,7 @@ namespace BlogSN.Backend.Controllers
             return Ok(await _service.GetPosts(cancellationToken));
         }
 
+
         // GET: api/Posts/5
         /// <summary>
         /// Get post by id

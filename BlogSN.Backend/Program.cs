@@ -112,6 +112,8 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddTransient<IPostService, PostService>();
 
+builder.Services.AddTransient<ICategoryService, CategoryService>();
+
 var app = builder.Build();
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
