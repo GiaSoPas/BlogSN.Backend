@@ -113,6 +113,10 @@ builder.Services.AddTransient<IPostService, PostService>();
 
 builder.Services.AddTransient<ICategoryService, CategoryService>();
 
+builder.Services.AddTransient<ICommentService, CommentService>();
+
+builder.Services.AddTransient<IRatingService, RatingService>();
+
 var app = builder.Build();
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);

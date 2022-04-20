@@ -3,6 +3,7 @@ using System;
 using Identity.DbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Identity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220420165542_Intial")]
+    partial class Intial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,7 +83,7 @@ namespace Identity.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<int>("RatingCount")
+                    b.Property<int>("Rating")
                         .HasColumnType("integer");
 
                     b.Property<string>("Title")
@@ -102,8 +104,8 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 1,
                             Content = "Про спорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 20, 20, 23, 24, 262, DateTimeKind.Utc).AddTicks(8716),
-                            RatingCount = 0,
+                            DateCreated = new DateTime(2022, 4, 20, 16, 55, 41, 932, DateTimeKind.Utc).AddTicks(4883),
+                            Rating = 0,
                             Title = "Спорт"
                         },
                         new
@@ -112,8 +114,8 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 2,
                             Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 20, 20, 23, 24, 262, DateTimeKind.Utc).AddTicks(8721),
-                            RatingCount = 0,
+                            DateCreated = new DateTime(2022, 4, 20, 16, 55, 41, 932, DateTimeKind.Utc).AddTicks(4886),
+                            Rating = 0,
                             Title = "Киберспорт"
                         },
                         new
@@ -122,8 +124,8 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 2,
                             Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 20, 20, 23, 24, 262, DateTimeKind.Utc).AddTicks(8722),
-                            RatingCount = 0,
+                            DateCreated = new DateTime(2022, 4, 20, 16, 55, 41, 932, DateTimeKind.Utc).AddTicks(4887),
+                            Rating = 0,
                             Title = "Киберспорт"
                         },
                         new
@@ -132,8 +134,8 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 3,
                             Content = "Про спортмашины и все такое",
-                            DateCreated = new DateTime(2022, 4, 20, 20, 23, 24, 262, DateTimeKind.Utc).AddTicks(8723),
-                            RatingCount = 0,
+                            DateCreated = new DateTime(2022, 4, 20, 16, 55, 41, 932, DateTimeKind.Utc).AddTicks(4887),
+                            Rating = 0,
                             Title = "Cпортмашины"
                         });
                 });
@@ -301,31 +303,6 @@ namespace Identity.Migrations
                     b.ToTable("Comment");
                 });
 
-            modelBuilder.Entity("Models.ModelsBlogSN.Rating", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ApplicationUserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool>("LikeStatus")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("PostId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PostId");
-
-                    b.ToTable("Rating");
-                });
-
             modelBuilder.Entity("Models.ModelsIdentity.IdentityAuth.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -394,13 +371,13 @@ namespace Identity.Migrations
                         {
                             Id = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b40844d9-293d-40e3-b747-f3ac68383d5c",
+                            ConcurrencyStamp = "44c7c30d-edc0-4062-bacb-7d40d30eb01c",
                             Email = "1@mail.ru",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "da",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "91c4cdb8-2edf-4d42-8663-f19e8bbb404c",
+                            SecurityStamp = "40384223-7acd-4d8a-984f-3468638d32d1",
                             TwoFactorEnabled = false
                         });
                 });
@@ -484,15 +461,6 @@ namespace Identity.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Models.ModelsBlogSN.Rating", b =>
-                {
-                    b.HasOne("BlogSN.Models.Post", null)
-                        .WithMany("Rating")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("BlogSN.Models.Category", b =>
                 {
                     b.Navigation("Posts");
@@ -501,8 +469,6 @@ namespace Identity.Migrations
             modelBuilder.Entity("BlogSN.Models.Post", b =>
                 {
                     b.Navigation("Comments");
-
-                    b.Navigation("Rating");
                 });
 
             modelBuilder.Entity("Models.ModelsIdentity.IdentityAuth.ApplicationUser", b =>

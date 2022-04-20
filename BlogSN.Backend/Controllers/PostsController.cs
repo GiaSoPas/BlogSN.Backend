@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using BlogSN.Backend.Data;
 using BlogSN.Models;
 using BlogSN.Backend.Services;
+using Models.ModelsBlogSN;
 
 namespace BlogSN.Backend.Controllers
 {
@@ -32,6 +33,7 @@ namespace BlogSN.Backend.Controllers
             return Ok(await _service.GetPosts(cancellationToken));
         }
 
+       
 
         // GET: api/Posts/5
         [HttpGet("{id}")]

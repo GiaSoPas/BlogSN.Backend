@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Identity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220420123139_Intial")]
-    partial class Intial
+    [Migration("20220420202324_AddRating")]
+    partial class AddRating
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -83,6 +83,9 @@ namespace Identity.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
+                    b.Property<int>("RatingCount")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
@@ -101,7 +104,8 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 1,
                             Content = "Про спорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3250),
+                            DateCreated = new DateTime(2022, 4, 20, 20, 23, 24, 262, DateTimeKind.Utc).AddTicks(8716),
+                            RatingCount = 0,
                             Title = "Спорт"
                         },
                         new
@@ -110,7 +114,8 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 2,
                             Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3253),
+                            DateCreated = new DateTime(2022, 4, 20, 20, 23, 24, 262, DateTimeKind.Utc).AddTicks(8721),
+                            RatingCount = 0,
                             Title = "Киберспорт"
                         },
                         new
@@ -119,7 +124,8 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 2,
                             Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3254),
+                            DateCreated = new DateTime(2022, 4, 20, 20, 23, 24, 262, DateTimeKind.Utc).AddTicks(8722),
+                            RatingCount = 0,
                             Title = "Киберспорт"
                         },
                         new
@@ -128,7 +134,8 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 3,
                             Content = "Про спортмашины и все такое",
-                            DateCreated = new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3254),
+                            DateCreated = new DateTime(2022, 4, 20, 20, 23, 24, 262, DateTimeKind.Utc).AddTicks(8723),
+                            RatingCount = 0,
                             Title = "Cпортмашины"
                         });
                 });
@@ -265,6 +272,62 @@ namespace Identity.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Models.ModelsBlogSN.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("Comment");
+                });
+
+            modelBuilder.Entity("Models.ModelsBlogSN.Rating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("LikeStatus")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("Rating");
+                });
+
             modelBuilder.Entity("Models.ModelsIdentity.IdentityAuth.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -333,13 +396,13 @@ namespace Identity.Migrations
                         {
                             Id = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4c87e28d-ca28-4ac5-8267-42d715d35b3e",
+                            ConcurrencyStamp = "b40844d9-293d-40e3-b747-f3ac68383d5c",
                             Email = "1@mail.ru",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "da",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c5cfd9f3-47b4-4582-a8e0-ce74d25335e1",
+                            SecurityStamp = "91c4cdb8-2edf-4d42-8663-f19e8bbb404c",
                             TwoFactorEnabled = false
                         });
                 });
@@ -408,13 +471,46 @@ namespace Identity.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Models.ModelsBlogSN.Comment", b =>
+                {
+                    b.HasOne("Models.ModelsIdentity.IdentityAuth.ApplicationUser", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BlogSN.Models.Post", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Models.ModelsBlogSN.Rating", b =>
+                {
+                    b.HasOne("BlogSN.Models.Post", null)
+                        .WithMany("Rating")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("BlogSN.Models.Category", b =>
                 {
                     b.Navigation("Posts");
                 });
 
+            modelBuilder.Entity("BlogSN.Models.Post", b =>
+                {
+                    b.Navigation("Comments");
+
+                    b.Navigation("Rating");
+                });
+
             modelBuilder.Entity("Models.ModelsIdentity.IdentityAuth.ApplicationUser", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
