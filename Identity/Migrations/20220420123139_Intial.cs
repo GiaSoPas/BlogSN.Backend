@@ -201,7 +201,7 @@ namespace Identity.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "88aec81d-b5b0-45f3-8721-8d41560b02f7", 0, "a66c189b-6cf3-46df-bc58-5a136ef93a8f", "1@mail.ru", false, false, null, null, null, "da", null, false, "18208818-2141-4442-9617-63796cc38296", false, null });
+                values: new object[] { "88aec81d-b5b0-45f3-8721-8d41560b02f7", 0, "4c87e28d-ca28-4ac5-8267-42d715d35b3e", "1@mail.ru", false, false, null, null, null, "da", null, false, "c5cfd9f3-47b4-4582-a8e0-ce74d25335e1", false, null });
 
             migrationBuilder.InsertData(
                 table: "Category",
@@ -218,9 +218,10 @@ namespace Identity.Migrations
                 columns: new[] { "Id", "ApplicationUserId", "CategoryId", "Content", "DateCreated", "Description", "Title" },
                 values: new object[,]
                 {
-                    { 1, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 1, "Про спорт и все такое", new DateTime(2022, 4, 19, 21, 45, 29, 637, DateTimeKind.Utc).AddTicks(2157), null, "Спорт" },
-                    { 2, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 2, "Про киберспорт и все такое", new DateTime(2022, 4, 19, 21, 45, 29, 637, DateTimeKind.Utc).AddTicks(2160), null, "Киберспорт" },
-                    { 3, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 3, "Про спортмашины и все такое", new DateTime(2022, 4, 19, 21, 45, 29, 637, DateTimeKind.Utc).AddTicks(2161), null, "Cпортмашины" }
+                    { 1, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 1, "Про спорт и все такое", new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3250), null, "Спорт" },
+                    { 2, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 2, "Про киберспорт и все такое", new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3253), null, "Киберспорт" },
+                    { 3, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 2, "Про киберспорт и все такое", new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3254), null, "Киберспорт" },
+                    { 4, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 3, "Про спортмашины и все такое", new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3254), null, "Cпортмашины" }
                 });
 
             migrationBuilder.CreateIndex(

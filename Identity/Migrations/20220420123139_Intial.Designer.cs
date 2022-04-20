@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Identity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220419214529_Intial")]
+    [Migration("20220420123139_Intial")]
     partial class Intial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -101,7 +101,7 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 1,
                             Content = "Про спорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 19, 21, 45, 29, 637, DateTimeKind.Utc).AddTicks(2157),
+                            DateCreated = new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3250),
                             Title = "Спорт"
                         },
                         new
@@ -110,16 +110,25 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 2,
                             Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 19, 21, 45, 29, 637, DateTimeKind.Utc).AddTicks(2160),
+                            DateCreated = new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3253),
                             Title = "Киберспорт"
                         },
                         new
                         {
                             Id = 3,
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
+                            CategoryId = 2,
+                            Content = "Про киберспорт и все такое",
+                            DateCreated = new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3254),
+                            Title = "Киберспорт"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 3,
                             Content = "Про спортмашины и все такое",
-                            DateCreated = new DateTime(2022, 4, 19, 21, 45, 29, 637, DateTimeKind.Utc).AddTicks(2161),
+                            DateCreated = new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3254),
                             Title = "Cпортмашины"
                         });
                 });
@@ -324,13 +333,13 @@ namespace Identity.Migrations
                         {
                             Id = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a66c189b-6cf3-46df-bc58-5a136ef93a8f",
+                            ConcurrencyStamp = "4c87e28d-ca28-4ac5-8267-42d715d35b3e",
                             Email = "1@mail.ru",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "da",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "18208818-2141-4442-9617-63796cc38296",
+                            SecurityStamp = "c5cfd9f3-47b4-4582-a8e0-ce74d25335e1",
                             TwoFactorEnabled = false
                         });
                 });
@@ -341,13 +350,11 @@ namespace Identity.Migrations
                         .WithMany("Posts")
                         .HasForeignKey("ApplicationUserId");
 
-                    b.HasOne("BlogSN.Models.Category", "Category")
+                    b.HasOne("BlogSN.Models.Category", null)
                         .WithMany("Posts")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

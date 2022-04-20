@@ -1,5 +1,6 @@
 ﻿using Models.ModelsIdentity.IdentityAuth;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace BlogSN.Models;
 
@@ -22,9 +23,7 @@ public class Post
     public DateTime DateCreated { get; set; }
 
     public int CategoryId { get; set; }
-
-    public Category Category { get; set; }
-
+    
     public string? ApplicationUserId { get; set; }
 
 
