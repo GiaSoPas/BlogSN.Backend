@@ -32,6 +32,7 @@ namespace BlogSN.Backend.Controllers
             return Ok(await _service.GetPosts(cancellationToken));
         }
 
+
         // GET: api/Posts/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Post>> GetPost(int id, CancellationToken cancellationToken)
