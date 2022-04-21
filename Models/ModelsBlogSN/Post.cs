@@ -21,8 +21,8 @@ public class Post
     public string? Description { get; set; }
 
     public string? Content { get; set; }
-
     public DateTime DateCreated { get; set; }
+<<<<<<< HEAD
 
     public IList<Rating>? Rating { get; set; }
 
@@ -32,7 +32,13 @@ public class Post
 
     public int CategoryId { get; set; }
 
+=======
+    
+    public int? CategoryId { get; set; }
+    [JsonIgnore]
+    public Category? Category { get; set; }
+    
+>>>>>>> master
     public string? ApplicationUserId { get; set; }
-
 
 }
