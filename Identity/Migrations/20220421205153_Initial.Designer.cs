@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Identity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220420141342_Initial")]
+    [Migration("20220421205153_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,6 +41,23 @@ namespace Identity.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Category");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Спорт"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Киберспорт"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Cпортмашины"
+                        });
                 });
 
             modelBuilder.Entity("BlogSN.Models.Post", b =>
@@ -76,6 +93,44 @@ namespace Identity.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Post");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
+                            CategoryId = 1,
+                            Content = "Про спорт и все такое",
+                            DateCreated = new DateTime(2022, 4, 21, 20, 51, 52, 813, DateTimeKind.Utc).AddTicks(6111),
+                            Title = "Спорт"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
+                            CategoryId = 2,
+                            Content = "Про киберспорт и все такое",
+                            DateCreated = new DateTime(2022, 4, 21, 20, 51, 52, 813, DateTimeKind.Utc).AddTicks(6118),
+                            Title = "Киберспорт"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
+                            CategoryId = 2,
+                            Content = "Про киберспорт и все такое",
+                            DateCreated = new DateTime(2022, 4, 21, 20, 51, 52, 813, DateTimeKind.Utc).AddTicks(6120),
+                            Title = "Киберспорт"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
+                            CategoryId = 3,
+                            Content = "Про спортмашины и все такое",
+                            DateCreated = new DateTime(2022, 4, 21, 20, 51, 52, 813, DateTimeKind.Utc).AddTicks(6121),
+                            Title = "Cпортмашины"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -272,6 +327,21 @@ namespace Identity.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "0fd7a68f-88ce-4d3c-b5a1-cf571610d2fb",
+                            Email = "1@mail.ru",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            PasswordHash = "da",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "cc746d92-51fe-45bf-9499-f1ee280a53aa",
+                            TwoFactorEnabled = false
+                        });
                 });
 
             modelBuilder.Entity("BlogSN.Models.Post", b =>
