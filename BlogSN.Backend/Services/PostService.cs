@@ -31,31 +31,14 @@ public class PostService : IPostService
     public async Task<Post> GetPostById(int id, CancellationToken cancellationToken)
     {
         var post = await _context.Post.Include(p => p.Comments).Include(a => a.Rating).FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
-        foreach (Rating rating in post.Rating)
-        {
-            if (rating.LikeStatus)
-            {
-                post.RatingCount++;
-            }
-            else post.RatingCount--;
-        }
+        
         return post;
     }
 
     public async Task<IEnumerable<Post>> GetPosts(CancellationToken cancellationToken)
     {
         var posts = await _context.Post.Include(p => p.Rating).ToListAsync(cancellationToken);
-        foreach (Post post in posts)
-        {
-            foreach (Rating rating in post.Rating)
-            {
-                if (rating.LikeStatus)
-                {
-                    post.RatingCount++;
-                }
-                else post.RatingCount--;
-            }
-        }
+        
         return await _context.Post.ToListAsync(cancellationToken);
     }
 
