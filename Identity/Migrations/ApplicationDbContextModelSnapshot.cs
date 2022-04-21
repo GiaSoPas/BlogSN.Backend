@@ -69,7 +69,7 @@ namespace Identity.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("text");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Content")
@@ -99,7 +99,7 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 1,
                             Content = "Про спорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3250),
+                            DateCreated = new DateTime(2022, 4, 21, 20, 51, 52, 813, DateTimeKind.Utc).AddTicks(6111),
                             Title = "Спорт"
                         },
                         new
@@ -108,7 +108,7 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 2,
                             Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3253),
+                            DateCreated = new DateTime(2022, 4, 21, 20, 51, 52, 813, DateTimeKind.Utc).AddTicks(6118),
                             Title = "Киберспорт"
                         },
                         new
@@ -117,7 +117,7 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 2,
                             Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3254),
+                            DateCreated = new DateTime(2022, 4, 21, 20, 51, 52, 813, DateTimeKind.Utc).AddTicks(6120),
                             Title = "Киберспорт"
                         },
                         new
@@ -126,7 +126,7 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 3,
                             Content = "Про спортмашины и все такое",
-                            DateCreated = new DateTime(2022, 4, 20, 12, 31, 38, 887, DateTimeKind.Utc).AddTicks(3254),
+                            DateCreated = new DateTime(2022, 4, 21, 20, 51, 52, 813, DateTimeKind.Utc).AddTicks(6121),
                             Title = "Cпортмашины"
                         });
                 });
@@ -331,13 +331,13 @@ namespace Identity.Migrations
                         {
                             Id = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4c87e28d-ca28-4ac5-8267-42d715d35b3e",
+                            ConcurrencyStamp = "0fd7a68f-88ce-4d3c-b5a1-cf571610d2fb",
                             Email = "1@mail.ru",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "da",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c5cfd9f3-47b4-4582-a8e0-ce74d25335e1",
+                            SecurityStamp = "cc746d92-51fe-45bf-9499-f1ee280a53aa",
                             TwoFactorEnabled = false
                         });
                 });
@@ -348,11 +348,11 @@ namespace Identity.Migrations
                         .WithMany("Posts")
                         .HasForeignKey("ApplicationUserId");
 
-                    b.HasOne("BlogSN.Models.Category", null)
+                    b.HasOne("BlogSN.Models.Category", "Category")
                         .WithMany("Posts")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
