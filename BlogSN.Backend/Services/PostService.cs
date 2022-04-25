@@ -43,16 +43,6 @@ public class PostService : IPostService
     public async Task<Post> GetPostById(int id, CancellationToken cancellationToken)
     {
 
-        var posts = await _context.Post.Include(p => p.Comments).Include(a => a.Rating).FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
-        foreach (Rating rating in posts.Rating)
-        {
-            if (rating.LikeStatus)
-            {
-                posts.RatingCount++;
-            }
-            else posts.RatingCount--;
-        }
-
         var post = await _context.Post.FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
 
         if (post is null)
@@ -65,18 +55,6 @@ public class PostService : IPostService
     }
     public async Task<IEnumerable<Post>> GetPosts(CancellationToken cancellationToken)
     {
-        var posts1 = await _context.Post.Include(p => p.Rating).ToListAsync(cancellationToken);
-        foreach (Post posts in posts1)
-        {
-            foreach (Rating rating in posts.Rating)
-            {
-                if (rating.LikeStatus)
-                {
-                    posts.RatingCount++;
-                }
-                else posts.RatingCount--;
-            }
-        }
         return await _context.Post.ToListAsync(cancellationToken);
         var post = await _context.Post.ToListAsync(cancellationToken);
         if (!post.Any())

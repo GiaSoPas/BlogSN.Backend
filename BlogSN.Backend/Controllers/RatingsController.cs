@@ -22,5 +22,12 @@ namespace BlogSN.Backend.Controllers
             await _service.CreateRatingStatus(rating, cancellationToken);
             return Ok();
         }
+
+        [HttpPut]
+        public async Task<IActionResult> PutPost(int id, [FromBody] Rating rating, CancellationToken cancellationToken)
+        {
+            await _service.UpdateRatingStatusById(id, rating, cancellationToken);
+            return NoContent();
+        }
     }
 }
