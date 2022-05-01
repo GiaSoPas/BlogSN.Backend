@@ -17,14 +17,14 @@ namespace BlogSN.Backend.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Rating>> CreateComment(Rating rating, CancellationToken cancellationToken)
+        public async Task<ActionResult<Rating>> CreateRatting(Rating rating, CancellationToken cancellationToken)
         {
             await _service.CreateRatingStatus(rating, cancellationToken);
             return Ok();
         }
 
         [HttpPut]
-        public async Task<IActionResult> PutPost(int id, [FromBody] Rating rating, CancellationToken cancellationToken)
+        public async Task<IActionResult> PutRatting(int id, [FromBody] Rating rating, CancellationToken cancellationToken)
         {
             await _service.UpdateRatingStatusById(id, rating, cancellationToken);
             return NoContent();

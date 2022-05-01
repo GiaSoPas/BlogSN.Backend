@@ -102,7 +102,7 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 1,
                             Content = "Про спорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 21, 22, 12, 16, 82, DateTimeKind.Utc).AddTicks(2605),
+                            DateCreated = new DateTime(2022, 5, 1, 16, 36, 9, 726, DateTimeKind.Utc).AddTicks(3227),
                             Description = "Описание спорта",
                             RatingCount = 0,
                             Title = "Спорт"
@@ -113,7 +113,7 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 2,
                             Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 21, 22, 12, 16, 82, DateTimeKind.Utc).AddTicks(2609),
+                            DateCreated = new DateTime(2022, 5, 1, 16, 36, 9, 726, DateTimeKind.Utc).AddTicks(3230),
                             Description = "Описание киберспорта",
                             RatingCount = 0,
                             Title = "Киберспорт"
@@ -124,7 +124,7 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 2,
                             Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 21, 22, 12, 16, 82, DateTimeKind.Utc).AddTicks(2610),
+                            DateCreated = new DateTime(2022, 5, 1, 16, 36, 9, 726, DateTimeKind.Utc).AddTicks(3231),
                             Description = "Описание киберспорта",
                             RatingCount = 0,
                             Title = "Киберспорт"
@@ -135,7 +135,7 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 3,
                             Content = "Про спортмашины и все такое",
-                            DateCreated = new DateTime(2022, 4, 21, 22, 12, 16, 82, DateTimeKind.Utc).AddTicks(2611),
+                            DateCreated = new DateTime(2022, 5, 1, 16, 36, 9, 726, DateTimeKind.Utc).AddTicks(3232),
                             Description = "Описание спортмашины",
                             RatingCount = 0,
                             Title = "Cпортмашины"
@@ -310,7 +310,7 @@ namespace Identity.Migrations
                             Id = 1,
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             Content = "Норм тема",
-                            CreatedDate = new DateTime(2022, 4, 21, 22, 12, 16, 82, DateTimeKind.Utc).AddTicks(2627),
+                            CreatedDate = new DateTime(2022, 5, 1, 16, 36, 9, 726, DateTimeKind.Utc).AddTicks(3250),
                             PostId = 1
                         },
                         new
@@ -318,7 +318,7 @@ namespace Identity.Migrations
                             Id = 2,
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             Content = "Норм тема",
-                            CreatedDate = new DateTime(2022, 4, 21, 22, 12, 16, 82, DateTimeKind.Utc).AddTicks(2628),
+                            CreatedDate = new DateTime(2022, 5, 1, 16, 36, 9, 726, DateTimeKind.Utc).AddTicks(3252),
                             PostId = 1
                         },
                         new
@@ -326,7 +326,7 @@ namespace Identity.Migrations
                             Id = 3,
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             Content = "Норм тема",
-                            CreatedDate = new DateTime(2022, 4, 21, 22, 12, 16, 82, DateTimeKind.Utc).AddTicks(2629),
+                            CreatedDate = new DateTime(2022, 5, 1, 16, 36, 9, 726, DateTimeKind.Utc).AddTicks(3252),
                             PostId = 2
                         },
                         new
@@ -334,7 +334,7 @@ namespace Identity.Migrations
                             Id = 4,
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             Content = "Норм тема",
-                            CreatedDate = new DateTime(2022, 4, 21, 22, 12, 16, 82, DateTimeKind.Utc).AddTicks(2630),
+                            CreatedDate = new DateTime(2022, 5, 1, 16, 36, 9, 726, DateTimeKind.Utc).AddTicks(3253),
                             PostId = 2
                         });
                 });
@@ -439,6 +439,9 @@ namespace Identity.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("boolean");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("boolean");
 
@@ -462,13 +465,14 @@ namespace Identity.Migrations
                         {
                             Id = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8a55ae39-ed73-4903-bffa-fcaac188aaa8",
+                            ConcurrencyStamp = "9a201bca-5e11-4a97-a81b-7ae1cd936b62",
                             Email = "1@mail.ru",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "EtoHash",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3e914ff2-7c78-4fb7-96ba-dec5093e40c1",
+                            SecurityStamp = "e0133a9e-0f74-4c77-a651-53edf1c9dfa1",
+                            Status = false,
                             TwoFactorEnabled = false,
                             UserName = "Vanya"
                         });
