@@ -200,16 +200,16 @@ namespace Identity.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "88aec81d-b5b0-45f3-8721-8d41560b02f7", 0, "0fd7a68f-88ce-4d3c-b5a1-cf571610d2fb", "1@mail.ru", false, false, null, null, null, "da", null, false, "cc746d92-51fe-45bf-9499-f1ee280a53aa", false, null });
+                values: new object[] { "88aec81d-b5b0-45f3-8721-8d41560b02f7", 0, "ba66dc2d-9735-42aa-b4d2-b7111fa75bd0", "1@mail.ru", false, false, null, null, null, "da", null, false, "30bbd4de-0f18-4299-b01f-a130f7fa17ae", false, null });
 
             migrationBuilder.InsertData(
                 table: "Category",
                 columns: new[] { "Id", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 1, null, "Спорт" },
-                    { 2, null, "Киберспорт" },
-                    { 3, null, "Cпортмашины" }
+                    { 1, "Спорт (англ. sport, сокращение от первоначального старофранц. desport — «игра», «развлечение») — организованная по определённым правилам деятельность людей (спортсменов), состоящая в сопоставлении их физических и/или интеллектуальных способностей. ", "Спорт" },
+                    { 2, "Ки́берспо́рт (также известен как «компью́терный спорт» или «электро́нный спорт», англ. esports) — командное или индивидуальное соревнование на основе компьютерных видеоигр. В России признан официальным видом спорта.", "Киберспорт" },
+                    { 3, "Аниме́  — японская мультипликация. В отличие от мультфильмов других стран, предназначенных в основном для просмотра детьми, бо́льшая часть выпускаемого аниме рассчитана на подростковую и взрослую аудитории, и во многом за счёт этого имеет высокую популярность в мире. ", "Аниме" }
                 });
 
             migrationBuilder.InsertData(
@@ -217,10 +217,10 @@ namespace Identity.Migrations
                 columns: new[] { "Id", "ApplicationUserId", "CategoryId", "Content", "DateCreated", "Description", "Title" },
                 values: new object[,]
                 {
-                    { 1, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 1, "Про спорт и все такое", new DateTime(2022, 4, 21, 20, 51, 52, 813, DateTimeKind.Utc).AddTicks(6111), null, "Спорт" },
-                    { 2, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 2, "Про киберспорт и все такое", new DateTime(2022, 4, 21, 20, 51, 52, 813, DateTimeKind.Utc).AddTicks(6118), null, "Киберспорт" },
-                    { 3, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 2, "Про киберспорт и все такое", new DateTime(2022, 4, 21, 20, 51, 52, 813, DateTimeKind.Utc).AddTicks(6120), null, "Киберспорт" },
-                    { 4, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 3, "Про спортмашины и все такое", new DateTime(2022, 4, 21, 20, 51, 52, 813, DateTimeKind.Utc).AddTicks(6121), null, "Cпортмашины" }
+                    { 1, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 1, "Про спорт и все такое", new DateTime(2022, 5, 2, 12, 2, 3, 287, DateTimeKind.Utc).AddTicks(4769), null, "Спорт" },
+                    { 2, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 2, "Про киберспорт и все такое", new DateTime(2022, 5, 2, 12, 2, 3, 287, DateTimeKind.Utc).AddTicks(4774), null, "Киберспорт" },
+                    { 3, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 2, "Про киберспорт и все такое", new DateTime(2022, 5, 2, 12, 2, 3, 287, DateTimeKind.Utc).AddTicks(4775), null, "Киберспорт" },
+                    { 4, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 3, "Про спортмашины и все такое", new DateTime(2022, 5, 2, 12, 2, 3, 287, DateTimeKind.Utc).AddTicks(4776), null, "Cпортмашины" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -44,17 +44,20 @@ namespace Identity.Migrations
                         new
                         {
                             Id = 1,
+                            Description = "Спорт (англ. sport, сокращение от первоначального старофранц. desport — «игра», «развлечение») — организованная по определённым правилам деятельность людей (спортсменов), состоящая в сопоставлении их физических и/или интеллектуальных способностей. ",
                             Name = "Спорт"
                         },
                         new
                         {
                             Id = 2,
+                            Description = "Ки́берспо́рт (также известен как «компью́терный спорт» или «электро́нный спорт», англ. esports) — командное или индивидуальное соревнование на основе компьютерных видеоигр. В России признан официальным видом спорта.",
                             Name = "Киберспорт"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Cпортмашины"
+                            Description = "Аниме́  — японская мультипликация. В отличие от мультфильмов других стран, предназначенных в основном для просмотра детьми, бо́льшая часть выпускаемого аниме рассчитана на подростковую и взрослую аудитории, и во многом за счёт этого имеет высокую популярность в мире. ",
+                            Name = "Аниме"
                         });
                 });
 
@@ -99,7 +102,7 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 1,
                             Content = "Про спорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 21, 20, 51, 52, 813, DateTimeKind.Utc).AddTicks(6111),
+                            DateCreated = new DateTime(2022, 5, 2, 12, 2, 3, 287, DateTimeKind.Utc).AddTicks(4769),
                             Title = "Спорт"
                         },
                         new
@@ -108,7 +111,7 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 2,
                             Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 21, 20, 51, 52, 813, DateTimeKind.Utc).AddTicks(6118),
+                            DateCreated = new DateTime(2022, 5, 2, 12, 2, 3, 287, DateTimeKind.Utc).AddTicks(4774),
                             Title = "Киберспорт"
                         },
                         new
@@ -117,7 +120,7 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 2,
                             Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 4, 21, 20, 51, 52, 813, DateTimeKind.Utc).AddTicks(6120),
+                            DateCreated = new DateTime(2022, 5, 2, 12, 2, 3, 287, DateTimeKind.Utc).AddTicks(4775),
                             Title = "Киберспорт"
                         },
                         new
@@ -126,7 +129,7 @@ namespace Identity.Migrations
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             CategoryId = 3,
                             Content = "Про спортмашины и все такое",
-                            DateCreated = new DateTime(2022, 4, 21, 20, 51, 52, 813, DateTimeKind.Utc).AddTicks(6121),
+                            DateCreated = new DateTime(2022, 5, 2, 12, 2, 3, 287, DateTimeKind.Utc).AddTicks(4776),
                             Title = "Cпортмашины"
                         });
                 });
@@ -331,13 +334,13 @@ namespace Identity.Migrations
                         {
                             Id = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0fd7a68f-88ce-4d3c-b5a1-cf571610d2fb",
+                            ConcurrencyStamp = "ba66dc2d-9735-42aa-b4d2-b7111fa75bd0",
                             Email = "1@mail.ru",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "da",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "cc746d92-51fe-45bf-9499-f1ee280a53aa",
+                            SecurityStamp = "30bbd4de-0f18-4299-b01f-a130f7fa17ae",
                             TwoFactorEnabled = false
                         });
                 });
