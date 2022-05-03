@@ -7,9 +7,9 @@ namespace BlogSN.Backend.Controllers
 {
     public class UsersController : ControllerBase
     {
-        private readonly IUsersServive _service;
+        private readonly IUserServive _service;
 
-        public UsersController(IUsersServive service)
+        public UsersController(IUserServive service)
         {
             _service = service;
         }

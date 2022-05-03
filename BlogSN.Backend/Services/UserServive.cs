@@ -6,11 +6,11 @@ using Models.ModelsIdentity.IdentityAuth;
 
 namespace BlogSN.Backend.Services
 {
-    public class UsersServive : IUsersServive
+    public class UserServive : IUserServive
     {
         private readonly BlogSnDbContext _context;
 
-        public UsersServive(BlogSnDbContext context)
+        public UserServive(BlogSnDbContext context)
         {
             _context = context;
         }
@@ -20,7 +20,7 @@ namespace BlogSN.Backend.Services
             var user = await _context.AspNetUsers.FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
             if (user is null)
             {
-                throw new NotFoundException($"No post with id = {id}");
+                throw new NotFoundException($"No user with id = {id}");
             }
             return user;
         }
@@ -30,7 +30,7 @@ namespace BlogSN.Backend.Services
             var userPosts = await _context.Post.Where(x => x.ApplicationUserId == id).ToListAsync(cancellationToken);
             if (!userPosts.Any())
             {
-                throw new NotFoundException($"No post with id = {id}");
+                throw new NotFoundException($"User has no posts");
             }
             return userPosts;
         }

@@ -117,7 +117,7 @@ builder.Services.AddTransient<IPostService, PostService>();
 
 builder.Services.AddTransient<ICategoryService, CategoryService>();
 
-builder.Services.AddTransient<IUsersServive, UsersServive>();
+builder.Services.AddTransient<IUserServive, UserServive>();
 
 var app = builder.Build();
 
