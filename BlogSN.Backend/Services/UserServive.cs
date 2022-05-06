@@ -35,5 +35,14 @@ namespace BlogSN.Backend.Services
             return userPosts;
         }
 
+        public async Task<IEnumerable<ApplicationUser>> GetUsers(CancellationToken cancellationToken)
+        {
+            var users = await _context.AspNetUsers.ToListAsync(cancellationToken);
+            if (!users.Any())
+            {
+                throw new NotFoundException($"No users");
+            }
+            return users;
+        }
     }
 }

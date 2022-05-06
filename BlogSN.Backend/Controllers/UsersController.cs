@@ -5,6 +5,9 @@ using Models.ModelsIdentity.IdentityAuth;
 
 namespace BlogSN.Backend.Controllers
 {
+    [Route("api/[controller]")]
+    [Produces("application/json")]
+    [ApiController]
     public class UsersController : ControllerBase
     {
         private readonly IUserServive _service;
@@ -28,6 +31,12 @@ namespace BlogSN.Backend.Controllers
         public async Task<ActionResult<IEnumerable<Post>>> GetPostsByUserId(string userId, CancellationToken cancellationToken)
         {
             return Ok(await _service.GetPostsByUserId(userId, cancellationToken));
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetUsers(CancellationToken cancellationToken)
+        {
+            return Ok(await _service.GetUsers(cancellationToken));
         }
     }
 }
