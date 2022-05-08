@@ -48,6 +48,13 @@ namespace Identity.Controllers
                     errors.Add(error.Description);
                 return StatusCode(500, new { Status = "Error", Message = $"User creation failes! {string.Join(", ", errors)}" });
             }
+
+            if (!await _roleManager.RoleExistsAsync(UserRole.User))
+                await _roleManager.CreateAsync(new IdentityRole(UserRole.User));
+
+            if (await _roleManager.RoleExistsAsync(UserRole.User))
+                await _userManager.AddToRoleAsync(user, (UserRole.User));
+
             return Ok(new { Status = "Success", Message = "User created successfully" });
         }
 
@@ -74,10 +81,10 @@ namespace Identity.Controllers
                     errors.Add(error.Description);
                 return StatusCode(500, new { Status = "Error", Message = $"User creation failes! {string.Join(", ", errors)}" });
             }
-            if (await _roleManager.RoleExistsAsync(UserRole.Admin))
+            if (!await _roleManager.RoleExistsAsync(UserRole.Admin))
                 await _roleManager.CreateAsync(new IdentityRole(UserRole.Admin));
 
-            if (await _roleManager.RoleExistsAsync(UserRole.User))
+            if (!await _roleManager.RoleExistsAsync(UserRole.User))
                 await _roleManager.CreateAsync(new IdentityRole(UserRole.User));
 
             if (await _roleManager.RoleExistsAsync(UserRole.Admin))
@@ -99,12 +106,15 @@ namespace Identity.Controllers
                 {
                     new Claim(ClaimTypes.NameIdentifier, user.Id),
                     new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim("Name",user.UserName),
+                    new Claim("Id", user.Id),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 };
 
                 foreach (var userRole in userRoles)
                 {
                     authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+                    authClaims.Add(new Claim("Role", userRole));
                 }
 
                 var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:SecretKey"]));
