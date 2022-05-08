@@ -52,7 +52,7 @@ public class PostService : IPostService
 
     public async Task<IEnumerable<Post>> GetPosts(CancellationToken cancellationToken)
     {
-        var post = await _context.Post.Include(p=> p.Category).ToListAsync(cancellationToken);
+        var post = await _context.Post.Include(p => p.ApplicationUser).Include(p=> p.Category).ToListAsync(cancellationToken);
         if (!post.Any())
         {
             throw new NotFoundException($"No task fround");
