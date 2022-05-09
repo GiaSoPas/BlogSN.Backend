@@ -24,11 +24,15 @@ public class Post
 
     public DateTime DateCreated { get; set; }
 
+    [JsonIgnore]
     public IList<Rating>? Rating { get; set; }
 
     public int RatingCount { get; set; }
 
+    [JsonIgnore]
     public IList<Comment>? Comments { get; set; }
+
+    public int CommentsCount { get; set; }
 
     public int? CategoryId { get; set; }
 

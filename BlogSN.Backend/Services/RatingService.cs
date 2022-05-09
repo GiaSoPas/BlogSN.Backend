@@ -22,7 +22,7 @@ namespace BlogSN.Backend.Services
                 await _context.Rating.AddAsync(rating, cancellationToken);
             }
             else throw new BadRequestException("Like is already exist");
-            var post = _context.Post.FirstOrDefaultAsync(p => p.Id == rating.PostId).Result;
+            var post = await _context.Post.FirstOrDefaultAsync(p => p.Id == rating.PostId);
             if (rating.LikeStatus)
             {
                 post.RatingCount++;

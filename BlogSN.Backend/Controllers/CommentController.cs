@@ -22,5 +22,20 @@ namespace BlogSN.Backend.Controllers
             await _service.CreateComment(comment, cancellationToken);
             return Ok();
         }
+
+        [HttpPut]
+        public async Task<IActionResult> PutComment(int id, [FromBody] Comment comment, CancellationToken cancellationToken)
+        {
+            await _service.UpdateCommentById(id, comment, cancellationToken);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePost(int id, CancellationToken cancellationToken)
+        {
+            await _service.DeleteCommentById(id, cancellationToken);
+
+            return NoContent();
+        }
     }
 }
