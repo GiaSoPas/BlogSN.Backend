@@ -16,7 +16,7 @@ namespace BlogSN.Backend.Services
 
         public async Task<IEnumerable<Post>> GetCategoryPosts(int categoryId, CancellationToken cancellationToken)
         {
-            return await _context.Post.Where(p => p.CategoryId == categoryId).ToListAsync(cancellationToken);
+            return await _context.Post.Where(p => p.CategoryId == categoryId).Include(p => p.Category).Include(p => p.ApplicationUser).ToListAsync(cancellationToken);
         }
 
         public async Task<IEnumerable<Category>> GetAllCategories(CancellationToken cancellationToken)

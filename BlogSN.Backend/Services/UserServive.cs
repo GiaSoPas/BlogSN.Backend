@@ -27,7 +27,7 @@ namespace BlogSN.Backend.Services
 
         public async Task<IEnumerable<Post>> GetPostsByUserId(string id, CancellationToken cancellationToken)
         {
-            var userPosts = await _context.Post.Where(x => x.ApplicationUserId == id).ToListAsync(cancellationToken);
+            var userPosts = await _context.Post.Where(x => x.ApplicationUserId == id).Include(p => p.Category).Include(p => p.ApplicationUser).ToListAsync(cancellationToken);
             if (!userPosts.Any())
             {
                 throw new NotFoundException($"User has no posts");
