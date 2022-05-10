@@ -54,5 +54,16 @@ namespace BlogSN.Backend.Services
             }
             return comment;
         }
+
+        public async Task<IEnumerable<Comment>> GetComments(CancellationToken cancellationToken)
+        {
+            var comments = await _context.Comment.ToListAsync(cancellationToken);
+            
+            if (!comments.Any())
+            {
+                throw new NotFoundException($"No comments found");
+            }
+            return comments;
+        }
     }
 }

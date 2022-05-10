@@ -37,5 +37,19 @@ namespace BlogSN.Backend.Controllers
 
             return NoContent();
         }
+        
+        // GET: api/Posts
+        /// <summary>
+        /// Get all comments
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Comment>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Comment>>> GetComments(CancellationToken cancellationToken)
+        {
+            return Ok(await _service.GetComments(cancellationToken));
+        }
     }
 }
