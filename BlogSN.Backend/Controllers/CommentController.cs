@@ -23,7 +23,7 @@ namespace BlogSN.Backend.Controllers
             return Ok();
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> PutComment(int id, [FromBody] Comment comment, CancellationToken cancellationToken)
         {
             await _service.UpdateCommentById(id, comment, cancellationToken);
@@ -31,7 +31,7 @@ namespace BlogSN.Backend.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePost(int id, CancellationToken cancellationToken)
+        public async Task<IActionResult> DeleteComment(int id, CancellationToken cancellationToken)
         {
             await _service.DeleteCommentById(id, cancellationToken);
 

@@ -113,6 +113,12 @@ namespace BlogSN.Backend.Controllers
             
             return NoContent();
         }
+        
+        [HttpGet("{postId}/comments")]
+        public async Task<ActionResult<IEnumerable<Post>>> GetCategoryPosts(int postId, CancellationToken cancellationToken)
+        {
+            return Ok(await _service.GetCommnetsByPost(postId, cancellationToken));
+        }
 
     }
 }

@@ -9,6 +9,7 @@ namespace BlogSN.Backend.Services;
 public class PostService : IPostService
 {
     private readonly BlogSnDbContext _context;
+    
 
     public PostService(BlogSnDbContext context)
     {
@@ -76,6 +77,11 @@ public class PostService : IPostService
         
         _context.Entry(post).State = EntityState.Modified;
         await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task<IEnumerable<Comment>> GetCommnetsByPost(int postId, CancellationToken cancellationToken)
+    {
+        return await _context.Comment.Where(c => c.Id == postId).Include(c => c.ApplicationUser).ToListAsync(cancellationToken);
     }
 
 }

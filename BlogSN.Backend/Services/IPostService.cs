@@ -15,4 +15,6 @@ public interface IPostService
 
     public Task UpdatePostById(int id, Post post, CancellationToken cancellationToken);
 
+    public Task<IEnumerable<Comment>> GetCommnetsByPost(int postId, CancellationToken cancellationToken);
+
 }
