@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using BlogSN.Backend.Data;
 using BlogSN.Models;
 using BlogSN.Backend.Services;
+using Models.ModelsBlogSN;
 
 namespace BlogSN.Backend.Controllers
 {
@@ -39,6 +40,7 @@ namespace BlogSN.Backend.Controllers
             return Ok(await _service.GetPosts(cancellationToken));
         }
 
+       
 
         // GET: api/Posts/5
         /// <summary>
@@ -110,6 +112,12 @@ namespace BlogSN.Backend.Controllers
             await _service.DeletePostById(id, cancellationToken);
             
             return NoContent();
+        }
+        
+        [HttpGet("{postId}/comments")]
+        public async Task<ActionResult<IEnumerable<Post>>> GetCategoryPosts(int postId, CancellationToken cancellationToken)
+        {
+            return Ok(await _service.GetCommnetsByPost(postId, cancellationToken));
         }
 
     }

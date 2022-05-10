@@ -1,4 +1,5 @@
-﻿using Models.ModelsIdentity.IdentityAuth;
+﻿using Models.ModelsBlogSN;
+using Models.ModelsIdentity.IdentityAuth;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
@@ -14,6 +15,7 @@ public class Post
 
     [Key]
     public int Id { get; set; }
+
     public string? Title { get; set; }
 
     public string? Description { get; set; }
@@ -21,8 +23,19 @@ public class Post
     public string? Content { get; set; }
 
     public DateTime DateCreated { get; set; }
-    
+
+    [JsonIgnore]
+    public IList<Rating>? Rating { get; set; }
+
+    public int RatingCount { get; set; }
+
+    [JsonIgnore]
+    public IList<Comment>? Comments { get; set; }
+
+    public int CommentsCount { get; set; }
+
     public int? CategoryId { get; set; }
+
     [JsonIgnore]
     public Category? Category { get; set; }
     

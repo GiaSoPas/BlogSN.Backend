@@ -117,7 +117,12 @@ builder.Services.AddTransient<IPostService, PostService>();
 
 builder.Services.AddTransient<ICategoryService, CategoryService>();
 
+builder.Services.AddTransient<ICommentService, CommentService>();
+
+builder.Services.AddTransient<IRatingService, RatingService>();
+
 builder.Services.AddTransient<IUserServive, UserServive>();
+
 
 var app = builder.Build();
 

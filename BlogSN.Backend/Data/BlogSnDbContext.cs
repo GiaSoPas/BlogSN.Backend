@@ -1,5 +1,6 @@
 ﻿using BlogSN.Models;
 using Microsoft.EntityFrameworkCore;
+using Models.ModelsBlogSN;
 using Models.ModelsIdentity.IdentityAuth;
 
 namespace BlogSN.Backend.Data;
@@ -12,6 +13,9 @@ public class BlogSnDbContext: DbContext
     }
     
 
+    public DbSet<Comment> Comment { get; set; }
+
+    public DbSet<Rating> Rating { get; set; }
 
     public DbSet<ApplicationUser> AspNetUsers { get; set; }
     
