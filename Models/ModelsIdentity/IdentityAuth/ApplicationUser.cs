@@ -7,8 +7,10 @@ namespace Models.ModelsIdentity.IdentityAuth
 {
     public class ApplicationUser : IdentityUser
     {
+        [JsonIgnore]
         public IList<Post>? Posts { get; set; }
-        public IList<Comment>? Comments { get; set; }
 
+        [JsonIgnore]
+        public IList<Comment>? Comments { get; set; }
     }
 }
