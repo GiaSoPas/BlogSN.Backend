@@ -1,6 +1,8 @@
-﻿using BlogSN.Backend.Data;
+﻿using System.Runtime.InteropServices.ComTypes;
+using BlogSN.Backend.Data;
 using BlogSN.Backend.Exceptions;
 using BlogSN.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Models.ModelsBlogSN;
 using Models.ModelsIdentity.IdentityAuth;
@@ -10,8 +12,9 @@ namespace BlogSN.Backend.Services
     public class UserServive : IUserServive
     {
         private readonly BlogSnDbContext _context;
+   
 
-        public UserServive(BlogSnDbContext context)
+        public UserServive(BlogSnDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
         }
@@ -23,6 +26,7 @@ namespace BlogSN.Backend.Services
             {
                 throw new NotFoundException($"No user with id = {id}");
             }
+            
             return user;
         }
 

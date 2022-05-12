@@ -37,7 +37,8 @@ namespace Identity.Controllers
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Username
+                UserName = model.Username,
+                Role = UserRole.User
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -70,7 +71,8 @@ namespace Identity.Controllers
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Username
+                UserName = model.Username,
+                Role = UserRole.Admin
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
