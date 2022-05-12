@@ -11,9 +11,14 @@ namespace Models.ModelsBlogSN
 {
     public class Comment
     {
+        public Comment()
+        {
+            CreatedDate = DateTime.UtcNow;
+        }
+
         public int Id { get; set; }
 
-        public string Content { get; set; }
+        public string? Content { get; set; }
 
         public int PostId { get; set; }
         [JsonIgnore]

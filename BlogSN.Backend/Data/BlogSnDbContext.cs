@@ -12,13 +12,12 @@ public class BlogSnDbContext: DbContext
         
     }
     
-
     public DbSet<Comment> Comment { get; set; }
 
     public DbSet<Rating> Rating { get; set; }
 
     public DbSet<ApplicationUser> AspNetUsers { get; set; }
-    
+
     public DbSet<Post> Post { get; set; }
     
     public DbSet<Category> Category { get; set; }
