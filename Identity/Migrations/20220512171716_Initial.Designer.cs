@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Identity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220512153836_Initial")]
+    [Migration("20220512171716_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -111,7 +111,7 @@ namespace Identity.Migrations
                             CategoryId = 1,
                             CommentsCount = 0,
                             Content = "Про спорт и все такое",
-                            DateCreated = new DateTime(2022, 5, 12, 15, 38, 36, 543, DateTimeKind.Utc).AddTicks(5278),
+                            DateCreated = new DateTime(2022, 5, 12, 17, 17, 16, 172, DateTimeKind.Utc).AddTicks(7903),
                             Description = "Описание спорта",
                             RatingCount = 0,
                             Title = "Спорт"
@@ -123,7 +123,7 @@ namespace Identity.Migrations
                             CategoryId = 2,
                             CommentsCount = 0,
                             Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 5, 12, 15, 38, 36, 543, DateTimeKind.Utc).AddTicks(5283),
+                            DateCreated = new DateTime(2022, 5, 12, 17, 17, 16, 172, DateTimeKind.Utc).AddTicks(7907),
                             Description = "Описание киберспорта",
                             RatingCount = 0,
                             Title = "Киберспорт"
@@ -135,7 +135,7 @@ namespace Identity.Migrations
                             CategoryId = 2,
                             CommentsCount = 0,
                             Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 5, 12, 15, 38, 36, 543, DateTimeKind.Utc).AddTicks(5286),
+                            DateCreated = new DateTime(2022, 5, 12, 17, 17, 16, 172, DateTimeKind.Utc).AddTicks(7908),
                             Description = "Описание киберспорта",
                             RatingCount = 0,
                             Title = "Киберспорт"
@@ -147,7 +147,7 @@ namespace Identity.Migrations
                             CategoryId = 3,
                             CommentsCount = 0,
                             Content = "Про спортмашины и все такое",
-                            DateCreated = new DateTime(2022, 5, 12, 15, 38, 36, 543, DateTimeKind.Utc).AddTicks(5288),
+                            DateCreated = new DateTime(2022, 5, 12, 17, 17, 16, 172, DateTimeKind.Utc).AddTicks(7909),
                             Description = "Описание спортмашины",
                             RatingCount = 0,
                             Title = "Cпортмашины"
@@ -298,7 +298,6 @@ namespace Identity.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Content")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedDate")
@@ -321,7 +320,7 @@ namespace Identity.Migrations
                             Id = 1,
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             Content = "Норм тема",
-                            CreatedDate = new DateTime(2022, 5, 12, 15, 38, 36, 543, DateTimeKind.Utc).AddTicks(5340),
+                            CreatedDate = new DateTime(2022, 5, 12, 17, 17, 16, 172, DateTimeKind.Utc).AddTicks(7927),
                             PostId = 1
                         },
                         new
@@ -329,7 +328,7 @@ namespace Identity.Migrations
                             Id = 2,
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             Content = "Норм тема",
-                            CreatedDate = new DateTime(2022, 5, 12, 15, 38, 36, 543, DateTimeKind.Utc).AddTicks(5341),
+                            CreatedDate = new DateTime(2022, 5, 12, 17, 17, 16, 172, DateTimeKind.Utc).AddTicks(7928),
                             PostId = 1
                         },
                         new
@@ -337,7 +336,7 @@ namespace Identity.Migrations
                             Id = 3,
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             Content = "Норм тема",
-                            CreatedDate = new DateTime(2022, 5, 12, 15, 38, 36, 543, DateTimeKind.Utc).AddTicks(5342),
+                            CreatedDate = new DateTime(2022, 5, 12, 17, 17, 16, 172, DateTimeKind.Utc).AddTicks(7929),
                             PostId = 2
                         },
                         new
@@ -345,7 +344,7 @@ namespace Identity.Migrations
                             Id = 4,
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             Content = "Норм тема",
-                            CreatedDate = new DateTime(2022, 5, 12, 15, 38, 36, 543, DateTimeKind.Utc).AddTicks(5343),
+                            CreatedDate = new DateTime(2022, 5, 12, 17, 17, 16, 172, DateTimeKind.Utc).AddTicks(7930),
                             PostId = 2
                         });
                 });
@@ -447,6 +446,9 @@ namespace Identity.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("Role")
+                        .HasColumnType("text");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
@@ -473,13 +475,13 @@ namespace Identity.Migrations
                         {
                             Id = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "85a68b27-ef43-4ae1-aafd-339e1b90e770",
+                            ConcurrencyStamp = "4768eed9-7d1e-404c-aaaa-73c4c2bd7a38",
                             Email = "1@mail.ru",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "EtoHash",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "42b5d33d-af79-4ba1-93d6-c8dcad93ca82",
+                            SecurityStamp = "9878f8c2-137b-4a57-8f22-09417913b0d9",
                             TwoFactorEnabled = false,
                             UserName = "Vanya"
                         });
