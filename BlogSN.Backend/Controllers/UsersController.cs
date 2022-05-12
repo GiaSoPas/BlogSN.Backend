@@ -1,5 +1,6 @@
 ﻿using BlogSN.Backend.Services;
 using BlogSN.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.ModelsIdentity.IdentityAuth;
 
@@ -40,6 +41,7 @@ namespace BlogSN.Backend.Controllers
         }
 
         [HttpDelete("{userId}")]
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> DeletePost(string userId, CancellationToken cancellationToken)
         {
             await _service.DeleteUserById(userId, cancellationToken);
@@ -54,6 +56,7 @@ namespace BlogSN.Backend.Controllers
         }
 
         [HttpPut("{userId}")]
+        [Authorize]
         public async Task<IActionResult> PutPost(string userId, [FromBody] ApplicationUser applicationUser, CancellationToken cancellationToken)
         {
             await _service.UpdateUserById(userId, applicationUser, cancellationToken);
