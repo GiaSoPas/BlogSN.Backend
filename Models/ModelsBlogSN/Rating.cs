@@ -8,7 +8,7 @@ namespace Models.ModelsBlogSN
 {
     public class Rating
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public bool LikeStatus { get; set; }
 

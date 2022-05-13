@@ -8,10 +8,12 @@ namespace BlogSN.Backend.Services
     public class RatingService : IRatingService
     {
         private readonly BlogSnDbContext _context;
+        private readonly IPostService _postService;
 
-        public RatingService(BlogSnDbContext context)
+        public RatingService(BlogSnDbContext context, IPostService postService)
         {
             _context = context;
+            _postService = postService;
         }
 
         public async Task CreateRatingStatus(Rating rating, CancellationToken cancellationToken)
@@ -22,7 +24,7 @@ namespace BlogSN.Backend.Services
                 await _context.Rating.AddAsync(rating, cancellationToken);
             }
             else throw new BadRequestException("Like is already exist");
-            var post = await _context.Post.FirstOrDefaultAsync(p => p.Id == rating.PostId);
+            var post = await _postService.GetPostById(rating.PostId, cancellationToken);
             if (rating.LikeStatus)
             {
                 post.RatingCount++;
@@ -32,12 +34,18 @@ namespace BlogSN.Backend.Services
 
         }
 
-        public async Task UpdateRatingStatusById(int id, Rating rating, CancellationToken cancellationToken)
+        public async Task UpdateRatingStatusById(string id, Rating rating, CancellationToken cancellationToken)
         {
             if (id != rating.Id)
             {
                 throw new BadRequestException("id from the route is not equal to id from passed object");
             }
+            var post = await _postService.GetPostById(rating.PostId, cancellationToken);
+            if (rating.LikeStatus)
+            {
+                post.RatingCount = post.RatingCount + 2;
+            }
+            else post.RatingCount = post.RatingCount - 2;
             _context.Entry(rating).State = EntityState.Modified;
             await _context.SaveChangesAsync(cancellationToken);
         }

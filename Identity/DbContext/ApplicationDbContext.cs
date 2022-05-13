@@ -54,10 +54,10 @@ namespace Identity.DbContext
                 new Comment { Id = 4, Content = "Норм тема", PostId = 2, ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7", CreatedDate = DateTime.UtcNow });
 
             builder.Entity<Rating>().HasData(
-                new Rating { Id = 1, LikeStatus = true, PostId = 1, ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7" },
-                new Rating { Id = 2, LikeStatus = true, PostId = 1, ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7" },
-                new Rating { Id = 3, LikeStatus = false, PostId = 2, ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7" },
-                new Rating { Id = 4, LikeStatus = false, PostId = 2, ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7" }
+                new Rating { Id = "188aec81d-b5b0-45f3-8721-8d41560b02f7", LikeStatus = true, PostId = 1, ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7" },
+                new Rating { Id = "288aec81d-b5b0-45f3-8721-8d41560b02f7", LikeStatus = true, PostId = 1, ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7" },
+                new Rating { Id = "388aec81d-b5b0-45f3-8721-8d41560b02f7", LikeStatus = false, PostId = 2, ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7" },
+                new Rating { Id = "488aec81d-b5b0-45f3-8721-8d41560b02f7", LikeStatus = false, PostId = 2, ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7" }
                 );
         }
         
