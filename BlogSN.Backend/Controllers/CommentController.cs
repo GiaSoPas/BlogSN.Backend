@@ -1,4 +1,5 @@
 ﻿using BlogSN.Backend.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.ModelsBlogSN;
@@ -17,6 +18,7 @@ namespace BlogSN.Backend.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Comment>> CreateComment(Comment comment, CancellationToken cancellationToken)
         {
             await _service.CreateComment(comment, cancellationToken);
@@ -24,6 +26,7 @@ namespace BlogSN.Backend.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutComment(int id, [FromBody] Comment comment, CancellationToken cancellationToken)
         {
             await _service.UpdateCommentById(id, comment, cancellationToken);
@@ -31,6 +34,7 @@ namespace BlogSN.Backend.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteComment(int id, CancellationToken cancellationToken)
         {
             await _service.DeleteCommentById(id, cancellationToken);

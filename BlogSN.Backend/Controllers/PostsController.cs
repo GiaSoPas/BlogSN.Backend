@@ -10,6 +10,7 @@ using BlogSN.Backend.Data;
 using BlogSN.Models;
 using BlogSN.Backend.Services;
 using Models.ModelsBlogSN;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlogSN.Backend.Controllers
 {
@@ -72,6 +73,7 @@ namespace BlogSN.Backend.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutPost(int id, [FromBody]Post post, CancellationToken cancellationToken)
         {
             await _service.UpdatePostById(id, post, cancellationToken);
@@ -88,6 +90,7 @@ namespace BlogSN.Backend.Controllers
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Post))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Post>> PostPost(Post post, CancellationToken cancellationToken)
@@ -105,6 +108,7 @@ namespace BlogSN.Backend.Controllers
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeletePost(int id, CancellationToken cancellationToken)
