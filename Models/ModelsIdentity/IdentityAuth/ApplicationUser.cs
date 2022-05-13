@@ -15,5 +15,7 @@ namespace Models.ModelsIdentity.IdentityAuth
         public IList<Comment>? Comments { get; set; }
 
         public string? Role { get; set; }
+
+        public int PostsCount { get; set; }
     }
 }

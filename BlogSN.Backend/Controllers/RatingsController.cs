@@ -1,4 +1,5 @@
 ﻿using BlogSN.Backend.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.ModelsBlogSN;
@@ -17,6 +18,7 @@ namespace BlogSN.Backend.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Rating>> CreateRatting(Rating rating, CancellationToken cancellationToken)
         {
             await _service.CreateRatingStatus(rating, cancellationToken);
@@ -24,6 +26,7 @@ namespace BlogSN.Backend.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> PutRatting(int id, [FromBody] Rating rating, CancellationToken cancellationToken)
         {
             await _service.UpdateRatingStatusById(id, rating, cancellationToken);
