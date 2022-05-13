@@ -1,6 +1,11 @@
 ## Implementation Web API(BlogSN project)
 ---
+[![ci/cd](https://github.com/GiaSoPas/BlogSN.Backend/actions/workflows/aws.yml/badge.svg?branch=master&event=push)](https://github.com/GiaSoPas/BlogSN.Backend/actions/workflows/aws.yml)
 ---
+### Demo
+
+[![Demo](https://img.shields.io/badge/DEMO-Disabled--now-red?style=for-the-badge)](http://blogsn-lb-438498043.eu-central-1.elb.amazonaws.com/)
+
 ### Toolset
 - .Net Core
 - PostgreSQL
