@@ -30,6 +30,7 @@ namespace Identity.Migrations
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
                     Role = table.Column<string>(type: "text", nullable: true),
+                    PostsCount = table.Column<int>(type: "integer", nullable: false),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -250,8 +251,8 @@ namespace Identity.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "88aec81d-b5b0-45f3-8721-8d41560b02f7", 0, "b696f875-8666-4a5b-934a-589d889b9bb0", "1@mail.ru", false, false, null, null, null, "EtoHash", null, false, null, "750f80cf-e6e7-4802-9a92-adfbf351adb4", false, "Vanya" });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PostsCount", "Role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "88aec81d-b5b0-45f3-8721-8d41560b02f7", 0, "ccf230ba-d8f0-44c4-9f41-5a0bee525ba2", "1@mail.ru", false, false, null, null, null, "EtoHash", null, false, 0, null, "e662c338-50da-459b-a48f-434921715e7c", false, "Vanya" });
 
             migrationBuilder.InsertData(
                 table: "Category",
@@ -268,10 +269,10 @@ namespace Identity.Migrations
                 columns: new[] { "Id", "ApplicationUserId", "CategoryId", "CommentsCount", "Content", "DateCreated", "Description", "RatingCount", "Title" },
                 values: new object[,]
                 {
-                    { 1, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 1, 0, "Про спорт и все такое", new DateTime(2022, 5, 12, 17, 44, 23, 149, DateTimeKind.Utc).AddTicks(8211), "Описание спорта", 0, "Спорт" },
-                    { 2, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 2, 0, "Про киберспорт и все такое", new DateTime(2022, 5, 12, 17, 44, 23, 149, DateTimeKind.Utc).AddTicks(8217), "Описание киберспорта", 0, "Киберспорт" },
-                    { 3, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 2, 0, "Про киберспорт и все такое", new DateTime(2022, 5, 12, 17, 44, 23, 149, DateTimeKind.Utc).AddTicks(8218), "Описание киберспорта", 0, "Киберспорт" },
-                    { 4, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 3, 0, "Про спортмашины и все такое", new DateTime(2022, 5, 12, 17, 44, 23, 149, DateTimeKind.Utc).AddTicks(8219), "Описание спортмашины", 0, "Cпортмашины" }
+                    { 1, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 1, 0, "Про спорт и все такое", new DateTime(2022, 5, 13, 14, 9, 11, 970, DateTimeKind.Utc).AddTicks(4722), "Описание спорта", 0, "Спорт" },
+                    { 2, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 2, 0, "Про киберспорт и все такое", new DateTime(2022, 5, 13, 14, 9, 11, 970, DateTimeKind.Utc).AddTicks(4727), "Описание киберспорта", 0, "Киберспорт" },
+                    { 3, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 2, 0, "Про киберспорт и все такое", new DateTime(2022, 5, 13, 14, 9, 11, 970, DateTimeKind.Utc).AddTicks(4729), "Описание киберспорта", 0, "Киберспорт" },
+                    { 4, "88aec81d-b5b0-45f3-8721-8d41560b02f7", 3, 0, "Про спортмашины и все такое", new DateTime(2022, 5, 13, 14, 9, 11, 970, DateTimeKind.Utc).AddTicks(4732), "Описание спортмашины", 0, "Cпортмашины" }
                 });
 
             migrationBuilder.InsertData(
@@ -279,10 +280,10 @@ namespace Identity.Migrations
                 columns: new[] { "Id", "ApplicationUserId", "Content", "CreatedDate", "PostId" },
                 values: new object[,]
                 {
-                    { 1, "88aec81d-b5b0-45f3-8721-8d41560b02f7", "Норм тема", new DateTime(2022, 5, 12, 17, 44, 23, 149, DateTimeKind.Utc).AddTicks(8246), 1 },
-                    { 2, "88aec81d-b5b0-45f3-8721-8d41560b02f7", "Норм тема", new DateTime(2022, 5, 12, 17, 44, 23, 149, DateTimeKind.Utc).AddTicks(8248), 1 },
-                    { 3, "88aec81d-b5b0-45f3-8721-8d41560b02f7", "Норм тема", new DateTime(2022, 5, 12, 17, 44, 23, 149, DateTimeKind.Utc).AddTicks(8250), 2 },
-                    { 4, "88aec81d-b5b0-45f3-8721-8d41560b02f7", "Норм тема", new DateTime(2022, 5, 12, 17, 44, 23, 149, DateTimeKind.Utc).AddTicks(8251), 2 }
+                    { 1, "88aec81d-b5b0-45f3-8721-8d41560b02f7", "Норм тема", new DateTime(2022, 5, 13, 14, 9, 11, 970, DateTimeKind.Utc).AddTicks(4771), 1 },
+                    { 2, "88aec81d-b5b0-45f3-8721-8d41560b02f7", "Норм тема", new DateTime(2022, 5, 13, 14, 9, 11, 970, DateTimeKind.Utc).AddTicks(4773), 1 },
+                    { 3, "88aec81d-b5b0-45f3-8721-8d41560b02f7", "Норм тема", new DateTime(2022, 5, 13, 14, 9, 11, 970, DateTimeKind.Utc).AddTicks(4775), 2 },
+                    { 4, "88aec81d-b5b0-45f3-8721-8d41560b02f7", "Норм тема", new DateTime(2022, 5, 13, 14, 9, 11, 970, DateTimeKind.Utc).AddTicks(4777), 2 }
                 });
 
             migrationBuilder.InsertData(
