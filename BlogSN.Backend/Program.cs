@@ -123,8 +123,17 @@ builder.Services.AddTransient<IRatingService, RatingService>();
 
 builder.Services.AddTransient<IUserServive, UserServive>();
 
+builder.Services.AddScoped<UserManager<ApplicationUser>>();
+builder.Services.AddScoped<RoleManager<IdentityRole>>();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    SeedData.SeedAdmin(userManager, roleManager);
+}
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
