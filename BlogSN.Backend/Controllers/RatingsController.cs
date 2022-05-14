@@ -26,7 +26,7 @@ namespace BlogSN.Backend.Controllers
             return Ok();
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         [Authorize]
         public async Task<IActionResult> PutRatting(string id, [FromBody] Rating rating, CancellationToken cancellationToken)
         {

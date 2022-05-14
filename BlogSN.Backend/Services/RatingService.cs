@@ -43,9 +43,9 @@ namespace BlogSN.Backend.Services
             var post = await _postService.GetPostById(rating.PostId, cancellationToken);
             if (rating.LikeStatus)
             {
-                post.RatingCount = post.RatingCount + 2;
+                post.RatingCount++;
             }
-            else post.RatingCount = post.RatingCount - 2;
+            else post.RatingCount--;
             _context.Entry(rating).State = EntityState.Modified;
             await _context.SaveChangesAsync(cancellationToken);
         }
