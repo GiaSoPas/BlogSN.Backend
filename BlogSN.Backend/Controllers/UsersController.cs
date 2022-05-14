@@ -41,7 +41,7 @@ namespace BlogSN.Backend.Controllers
         }
 
         [HttpDelete("{userId}")]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteUserByUserId(string userId, CancellationToken cancellationToken)
         {
             await _service.DeleteUserById(userId, cancellationToken);
@@ -50,14 +50,14 @@ namespace BlogSN.Backend.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetUsers(CancellationToken cancellationToken)
         {
             return Ok(await _service.GetUsers(cancellationToken));
         }
 
         [HttpPut("{userId}")]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PutUserByUserId(string userId, [FromBody] ApplicationUser applicationUser, CancellationToken cancellationToken)
         {
             await _service.UpdateUserById(userId, applicationUser, cancellationToken);
