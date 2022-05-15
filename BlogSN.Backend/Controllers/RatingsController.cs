@@ -27,7 +27,7 @@ namespace BlogSN.Backend.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> DeleteRatting(string id, CancellationToken cancellationToken)
         {
             await _service.DeleteRatingStatusById(id, cancellationToken);
