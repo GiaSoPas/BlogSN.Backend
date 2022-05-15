@@ -12,16 +12,18 @@ namespace BlogSN.Backend.Services
     public class UserServive : IUserServive
     {
         private readonly BlogSnDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
    
 
         public UserServive(BlogSnDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public async Task<ApplicationUser> GetUserById(string id, CancellationToken cancellationToken)
         {
-            var user = await _context.AspNetUsers.FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
+            var user = await _context.AspNetUsers.Include(p=> p.Posts).Include(p=> p.Comments).FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
             if (user is null)
             {
                 throw new NotFoundException($"No user with id = {id}");
