@@ -44,7 +44,6 @@ namespace BlogSN.Backend.Services
             if (lickCheck is null)
             {
                 throw new NotFoundException($"No rating with id = {id}");
-
             }
             var post = await _postService.GetPostById(rating.PostId, cancellationToken);
             if (lickCheck.LikeStatus == rating.LikeStatus)
