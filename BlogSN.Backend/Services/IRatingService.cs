@@ -6,5 +6,6 @@ namespace BlogSN.Backend.Services
     {
         public Task CreateRatingStatus(Rating rating, CancellationToken cancellationToken);
         public Task UpdateRatingStatusById(string id, Rating rating, CancellationToken cancellationToken);
+        public Task DeleteRatingStatusById(string id, CancellationToken cancellationToken);
     }
 }

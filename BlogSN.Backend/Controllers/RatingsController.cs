@@ -26,6 +26,14 @@ namespace BlogSN.Backend.Controllers
             return Ok();
         }
 
+        [HttpDelete("{id}")]
+        //[Authorize]
+        public async Task<IActionResult> DeleteRatting(string id, CancellationToken cancellationToken)
+        {
+            await _service.DeleteRatingStatusById(id, cancellationToken);
+            return NoContent();
+        }
+
         [HttpPut("{id}")]
         [Authorize]
         public async Task<IActionResult> PutRatting(string id, [FromBody] Rating rating, CancellationToken cancellationToken)
