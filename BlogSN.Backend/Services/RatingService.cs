@@ -40,14 +40,28 @@ namespace BlogSN.Backend.Services
             {
                 throw new BadRequestException("id from the route is not equal to id from passed object");
             }
-            var post = await _postService.GetPostById(rating.PostId, cancellationToken);
-            if (rating.LikeStatus)
+            var lickCheck = await _context.Rating.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
+            if (lickCheck is null)
             {
-                post.RatingCount++;
+                throw new NotFoundException($"No rating with id = {id}");
+
             }
-            else post.RatingCount--;
+            var post = await _postService.GetPostById(rating.PostId, cancellationToken);
+            if (lickCheck.LikeStatus == rating.LikeStatus)
+            {
+                _context.Rating.Remove(rating);
+                if (rating.LikeStatus)
+                {
+                    post.RatingCount--;
+                }
+                else post.RatingCount++;
+                await _context.SaveChangesAsync(cancellationToken);
+                return;
+            }
+            post.RatingCount = rating.LikeStatus ? post.RatingCount + 2 : post.RatingCount - 2;
             _context.Entry(rating).State = EntityState.Modified;
             await _context.SaveChangesAsync(cancellationToken);
         }
+
     }
 }
