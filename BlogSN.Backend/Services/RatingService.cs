@@ -37,8 +37,16 @@ namespace BlogSN.Backend.Services
         public async Task DeleteRatingStatusById(string id, CancellationToken cancellationToken)
         {
             var rating = await _context.Rating.FirstOrDefaultAsync(p=> p.Id == id, cancellationToken);
+            if (rating is null)
+            {
+                throw new NotFoundException($"No rating with id = {id}");
+            }
             var post = await _postService.GetPostById(rating.PostId, cancellationToken);
-            post.RatingCount--;
+            if (rating.LikeStatus)
+            {
+                post.RatingCount--;
+            }
+            else post.RatingCount++;
             _context.Remove(rating);
             await _context.SaveChangesAsync(cancellationToken);
         }
