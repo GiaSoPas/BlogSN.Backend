@@ -5,6 +5,7 @@ using BlogSN.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Models.ModelsBlogSN;
+using Models.ModelsIdentity;
 using Models.ModelsIdentity.IdentityAuth;
 
 namespace BlogSN.Backend.Services
@@ -13,7 +14,7 @@ namespace BlogSN.Backend.Services
     {
         private readonly BlogSnDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-   
+
 
         public UserServive(BlogSnDbContext context, UserManager<ApplicationUser> userManager)
         {
@@ -70,17 +71,67 @@ namespace BlogSN.Backend.Services
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task UpdateUserById(string userId, ApplicationUser applicationUser, CancellationToken cancellationToken)
+        public async Task UpdateUsernameById(string userId, string newName, CancellationToken cancellationToken)
         {
-            if (userId != applicationUser.Id)
+            if (!_context.AspNetUsers.Any(p => p.Id == userId))
+                throw new NotFoundException($"There is no user with {{id}} = {userId}.");
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user.UserName == newName)
             {
-                throw new BadRequestException("id from the route is not equal to id from passed object");
+                throw new BadRequestException("Cannot be changed to the same name");
+            }
+            var users = await _context.AspNetUsers.AnyAsync(p => p.UserName == newName);
+            if (users)
+            {
+                throw new BadRequestException("User with this name exists");
             }
 
-            if(!_context.AspNetUsers.Any(p=> p.Id == userId))
-                throw new NotFoundException($"There is no post with {{id}} = {userId}.");
-            
-            _context.Entry(applicationUser).State = EntityState.Modified;
+            user.UserName = newName;
+            user.NormalizedUserName = newName.ToUpper();
+            var result = await _userManager.UpdateAsync(user);
+
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task UpdateUserEmailById(string userId, string newEmail, CancellationToken cancellationToken)
+        {
+            if (!_context.AspNetUsers.Any(p => p.Id == userId))
+                throw new NotFoundException($"There is no user with {{id}} = {userId}.");
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user.Email == newEmail)
+            {
+                throw new BadRequestException("Cannot be changed to the same email");
+            }
+            var users = await _context.AspNetUsers.AnyAsync(p => p.Email == newEmail);
+            if (users)
+            {
+                throw new BadRequestException("User with this email exists");
+            }
+
+            user.Email = newEmail;
+            user.NormalizedEmail = newEmail.ToUpper();
+            var result = await _userManager.UpdateAsync(user);
+
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task UpdateUserRoleToAdminById(string userId, CancellationToken cancellationToken)
+        {
+            if (!_context.AspNetUsers.Any(p => p.Id == userId))
+                throw new NotFoundException($"There is no user with {{id}} = {userId}.");
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user.Role == UserRole.Admin)
+            {
+                throw new BadRequestException("User already admin");
+            }
+            await _userManager.AddToRoleAsync(user,UserRole.Admin);
+            await _userManager.RemoveFromRoleAsync(user,UserRole.User);
+            user.Role = UserRole.Admin;
+            await _userManager.UpdateAsync(user);
+
             await _context.SaveChangesAsync(cancellationToken);
         }
     }

@@ -56,11 +56,29 @@ namespace BlogSN.Backend.Controllers
             return Ok(await _service.GetUsers(cancellationToken));
         }
 
-        [HttpPut("{userId}")]
+        [HttpPut("{userId}/changeName")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> PutUserByUserId(string userId, [FromBody] ApplicationUser applicationUser, CancellationToken cancellationToken)
+        public async Task<IActionResult> PutUsernameByUserId(string userId, string newName, CancellationToken cancellationToken)
         {
-            await _service.UpdateUserById(userId, applicationUser, cancellationToken);
+            await _service.UpdateUsernameById(userId, newName, cancellationToken);
+
+            return NoContent();
+        }
+
+        [HttpPut("{userId}/changeEmail")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> PutUserEmailByUserId(string userId, string newEmail, CancellationToken cancellationToken)
+        {
+            await _service.UpdateUserEmailById(userId, newEmail, cancellationToken);
+
+            return NoContent();
+        }
+
+        [HttpPut("{userId}/changeRole")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UpdateUserRoleToAdminById(string userId, CancellationToken cancellationToken)
+        {
+            await _service.UpdateUserRoleToAdminById(userId, cancellationToken);
 
             return NoContent();
         }
