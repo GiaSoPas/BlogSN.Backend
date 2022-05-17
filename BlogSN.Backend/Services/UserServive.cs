@@ -63,6 +63,16 @@ namespace BlogSN.Backend.Services
             return userComments;
         }
 
+        public async Task<IEnumerable<Rating>> GetRatingsByUserId(string userId, CancellationToken cancellationToken)
+        {
+            var userRattings = await _context.Rating.Where(x => x.ApplicationUserId == userId).ToListAsync(cancellationToken);
+            if (!userRattings.Any())
+            {
+                throw new NotFoundException("User has no rating");
+            }
+            return userRattings;
+        }
+
         public async Task DeleteUserById(string userId, CancellationToken cancellationToken)
         {
             var user = await GetUserById(userId, cancellationToken);
@@ -130,6 +140,24 @@ namespace BlogSN.Backend.Services
             await _userManager.AddToRoleAsync(user,UserRole.Admin);
             await _userManager.RemoveFromRoleAsync(user,UserRole.User);
             user.Role = UserRole.Admin;
+            await _userManager.UpdateAsync(user);
+
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task UpdateUserRoleToUserById(string userId, CancellationToken cancellationToken)
+        {
+            if (!_context.AspNetUsers.Any(p => p.Id == userId))
+                throw new NotFoundException($"There is no user with {{id}} = {userId}.");
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user.Role == UserRole.User)
+            {
+                throw new BadRequestException("User already user");
+            }
+            await _userManager.AddToRoleAsync(user,UserRole.User);
+            await _userManager.RemoveFromRoleAsync(user,UserRole.Admin);
+            user.Role = UserRole.User;
             await _userManager.UpdateAsync(user);
 
             await _context.SaveChangesAsync(cancellationToken);
