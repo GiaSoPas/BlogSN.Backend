@@ -40,8 +40,10 @@ public class PostService : IPostService
     public async Task DeletePostById(int id, CancellationToken cancellationToken)
     {
         var post = await GetPostById(id, cancellationToken);
-        var user = await _userServive.GetUserById(post.ApplicationUserId, cancellationToken);
-        user.PostsCount--;
+        if (!(post.ApplicationUserId == null)){
+            var user = await _userServive.GetUserById(post.ApplicationUserId, cancellationToken);
+            user.PostsCount--;
+        }
         _context.Post.Remove(post);
         await _context.SaveChangesAsync(cancellationToken);
     }

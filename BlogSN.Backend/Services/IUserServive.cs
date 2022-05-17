@@ -16,6 +16,10 @@ namespace BlogSN.Backend.Services
 
         public Task DeleteUserById(string userId, CancellationToken cancellationToken);
 
-        public Task UpdateUserById(string userId, ApplicationUser applicationUser, CancellationToken cancellationToken);
+        public Task UpdateUsernameById(string userId, string newName, CancellationToken cancellationToken);
+
+        public Task UpdateUserEmailById(string userId, string newEmail, CancellationToken cancellationToken);
+
+        public Task UpdateUserRoleToAdminById(string userId, CancellationToken cancellationToken);
     }
 }
