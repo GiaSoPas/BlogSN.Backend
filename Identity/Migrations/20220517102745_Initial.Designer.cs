@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Identity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220514152311_Initial")]
+    [Migration("20220517102745_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,8 +58,56 @@ namespace Identity.Migrations
                         new
                         {
                             Id = 3,
-                            Description = "Аниме́  — японская мультипликация. В отличие от мультфильмов других стран, предназначенных в основном для просмотра детьми, бо́льшая часть выпускаемого аниме рассчитана на подростковую и взрослую аудитории, и во многом за счёт этого имеет высокую популярность в мире. ",
+                            Description = "Аниме́  — японская мультипликация. В отличие от мультфильмов других стран, предназначенных в основном для просмотра детьми, бо́льшая часть выпускаемого аниме рассчитана на подростковую и имеет высокую популярность в мире. ",
                             Name = "Аниме"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Ну, тут очевидно про кино и сериалы, да?",
+                            Name = "Кино и сериалы"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Всем небезразличным к шаурме посвящается",
+                            Name = "Шаурма и друзья"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Путеше́ствие — передвижение по какой-либо территории или акватории с целью их изучения, а также с общеобразовательными, познавательными, спортивными и другими целями.",
+                            Name = "Путешествия"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "этот вид «отражает действительность и воздействует на человека посредством осмысленных и особым образом организованных по высоте и во времени звуковых последований",
+                            Name = "Музыка"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "одна из наиболее общих категорий эстетики, искусствознания и художественной практики",
+                            Name = "Арт"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Description = "единица значимой для культуры информации.",
+                            Name = "Мемы"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Description = "под культурой понимают человеческую деятельность в её самых разных проявлениях, включая все формы и способы человеческого самовыражения и самопознания",
+                            Name = "Культура"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Description = "форма деятельности в условных ситуациях, направленная на воссоздание и усвоение общественного опыта, фиксированного в социально закрепленных способах осуществления предметных действий, в предметах науки и культуры.",
+                            Name = "Игры"
                         });
                 });
 
@@ -111,7 +159,7 @@ namespace Identity.Migrations
                             CategoryId = 1,
                             CommentsCount = 0,
                             Content = "Про спорт и все такое",
-                            DateCreated = new DateTime(2022, 5, 14, 15, 23, 11, 212, DateTimeKind.Utc).AddTicks(3803),
+                            DateCreated = new DateTime(2022, 5, 17, 10, 27, 45, 31, DateTimeKind.Utc).AddTicks(5973),
                             Description = "Описание спорта",
                             RatingCount = 0,
                             Title = "Спорт"
@@ -123,7 +171,7 @@ namespace Identity.Migrations
                             CategoryId = 2,
                             CommentsCount = 0,
                             Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 5, 14, 15, 23, 11, 212, DateTimeKind.Utc).AddTicks(3807),
+                            DateCreated = new DateTime(2022, 5, 17, 10, 27, 45, 31, DateTimeKind.Utc).AddTicks(5977),
                             Description = "Описание киберспорта",
                             RatingCount = 0,
                             Title = "Киберспорт"
@@ -135,7 +183,7 @@ namespace Identity.Migrations
                             CategoryId = 2,
                             CommentsCount = 0,
                             Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 5, 14, 15, 23, 11, 212, DateTimeKind.Utc).AddTicks(3808),
+                            DateCreated = new DateTime(2022, 5, 17, 10, 27, 45, 31, DateTimeKind.Utc).AddTicks(5978),
                             Description = "Описание киберспорта",
                             RatingCount = 0,
                             Title = "Киберспорт"
@@ -147,7 +195,7 @@ namespace Identity.Migrations
                             CategoryId = 3,
                             CommentsCount = 0,
                             Content = "Про спортмашины и все такое",
-                            DateCreated = new DateTime(2022, 5, 14, 15, 23, 11, 212, DateTimeKind.Utc).AddTicks(3809),
+                            DateCreated = new DateTime(2022, 5, 17, 10, 27, 45, 31, DateTimeKind.Utc).AddTicks(5979),
                             Description = "Описание спортмашины",
                             RatingCount = 0,
                             Title = "Cпортмашины"
@@ -320,7 +368,7 @@ namespace Identity.Migrations
                             Id = 1,
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             Content = "Норм тема",
-                            CreatedDate = new DateTime(2022, 5, 14, 15, 23, 11, 212, DateTimeKind.Utc).AddTicks(3827),
+                            CreatedDate = new DateTime(2022, 5, 17, 10, 27, 45, 31, DateTimeKind.Utc).AddTicks(6000),
                             PostId = 1
                         },
                         new
@@ -328,7 +376,7 @@ namespace Identity.Migrations
                             Id = 2,
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             Content = "Норм тема",
-                            CreatedDate = new DateTime(2022, 5, 14, 15, 23, 11, 212, DateTimeKind.Utc).AddTicks(3829),
+                            CreatedDate = new DateTime(2022, 5, 17, 10, 27, 45, 31, DateTimeKind.Utc).AddTicks(6001),
                             PostId = 1
                         },
                         new
@@ -336,7 +384,7 @@ namespace Identity.Migrations
                             Id = 3,
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             Content = "Норм тема",
-                            CreatedDate = new DateTime(2022, 5, 14, 15, 23, 11, 212, DateTimeKind.Utc).AddTicks(3829),
+                            CreatedDate = new DateTime(2022, 5, 17, 10, 27, 45, 31, DateTimeKind.Utc).AddTicks(6002),
                             PostId = 2
                         },
                         new
@@ -344,7 +392,7 @@ namespace Identity.Migrations
                             Id = 4,
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             Content = "Норм тема",
-                            CreatedDate = new DateTime(2022, 5, 14, 15, 23, 11, 212, DateTimeKind.Utc).AddTicks(3830),
+                            CreatedDate = new DateTime(2022, 5, 17, 10, 27, 45, 31, DateTimeKind.Utc).AddTicks(6003),
                             PostId = 2
                         });
                 });
@@ -475,14 +523,14 @@ namespace Identity.Migrations
                         {
                             Id = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "54c99e6e-f2d5-4d8d-9d59-6d43b39f3477",
+                            ConcurrencyStamp = "55d18e24-8a52-47b6-92a1-23a913c1ec59",
                             Email = "1@mail.ru",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "EtoHash",
                             PhoneNumberConfirmed = false,
                             PostsCount = 0,
-                            SecurityStamp = "32d17aee-783e-49ad-b874-bb4e5aef13ad",
+                            SecurityStamp = "47f178e0-c1b1-40bd-940b-fd96cae86be0",
                             TwoFactorEnabled = false,
                             UserName = "Vanya"
                         });
