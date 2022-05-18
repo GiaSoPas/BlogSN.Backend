@@ -18,12 +18,13 @@ namespace BlogSN.Backend.Services
 
         public async Task CreateRatingStatus(Rating rating, CancellationToken cancellationToken)
         {
-            var lickCheck = await _context.Post.AnyAsync(p => p.Rating.Any(v => v.ApplicationUserId == rating.ApplicationUserId && v.PostId == rating.PostId));
-            if (!lickCheck)
+            var ratingSearch = await _context.Rating.FirstOrDefaultAsync(p => p.Id == rating.Id, cancellationToken);
+            if (ratingSearch is null)
             {
                 await _context.Rating.AddAsync(rating, cancellationToken);
             }
-            else throw new BadRequestException("Like is already exist");
+            else throw new BadRequestException($"Like status {ratingSearch.LikeStatus} is already exist");
+           
             var post = await _postService.GetPostById(rating.PostId, cancellationToken);
             if (rating.LikeStatus)
             {
