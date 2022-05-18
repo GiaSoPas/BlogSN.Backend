@@ -14,17 +14,21 @@ namespace BlogSN.Backend.Services
     {
         private readonly BlogSnDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IImageService _imageService;
 
 
-        public UserServive(BlogSnDbContext context, UserManager<ApplicationUser> userManager)
+        public UserServive(BlogSnDbContext context, UserManager<ApplicationUser> userManager, IImageService imageService)
         {
             _context = context;
             _userManager = userManager;
+            _imageService = imageService;
         }
 
         public async Task<ApplicationUser> GetUserById(string id, CancellationToken cancellationToken)
         {
-            var user = await _context.AspNetUsers.Include(p=> p.Posts).Include(p=> p.Comments).FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
+            var user = await _context.AspNetUsers.Include(p=> p.Posts)
+                                                 .Include(p=> p.Comments)
+                                                 .FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
             if (user is null)
             {
                 throw new NotFoundException($"No user with id = {id}");
@@ -132,6 +136,27 @@ namespace BlogSN.Backend.Services
             user.Role = UserRole.Admin;
             await _userManager.UpdateAsync(user);
 
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task UpdateAvatarByUserId(string userId, IFormFile imageFile, CancellationToken cancellationToken)
+        {
+            if (!_context.AspNetUsers.Any(p => p.Id == userId))
+                throw new NotFoundException($"There is no user with {{id}} = {userId}.");
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user.ImageName == null)
+            {
+                user.ImageName =await _imageService.SaveImage(imageFile, cancellationToken);
+            }
+            else
+            {
+                _imageService.DeleteImage(user.ImageName, cancellationToken);
+                user.ImageName =await _imageService.SaveImage(imageFile, cancellationToken);
+            }
+            
+            
+            
+            _context.Entry(user).State = EntityState.Modified;
             await _context.SaveChangesAsync(cancellationToken);
         }
     }

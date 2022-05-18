@@ -21,5 +21,7 @@ namespace BlogSN.Backend.Services
         public Task UpdateUserEmailById(string userId, string newEmail, CancellationToken cancellationToken);
 
         public Task UpdateUserRoleToAdminById(string userId, CancellationToken cancellationToken);
+
+        public Task UpdateAvatarByUserId(string userId, IFormFile imageFile, CancellationToken cancellationToken);
     }
 }

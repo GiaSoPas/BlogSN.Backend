@@ -82,5 +82,13 @@ namespace BlogSN.Backend.Controllers
 
             return NoContent();
         }
+        
+        [HttpPut("{userId}/changeAvatar")]
+        public async Task<IActionResult> UpdateAvatarByUserId(string userId, IFormFile imageFile, CancellationToken cancellationToken)
+        {
+            await _service.UpdateAvatarByUserId(userId, imageFile, cancellationToken);
+
+            return NoContent();
+        }
     }
 }

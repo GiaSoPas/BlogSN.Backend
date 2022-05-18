@@ -123,6 +123,8 @@ builder.Services.AddTransient<IRatingService, RatingService>();
 
 builder.Services.AddTransient<IUserServive, UserServive>();
 
+builder.Services.AddTransient<IImageService, ImageService>();
+
 builder.Services.AddScoped<UserManager<ApplicationUser>>();
 builder.Services.AddScoped<RoleManager<IdentityRole>>();
 

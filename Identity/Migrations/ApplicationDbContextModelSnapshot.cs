@@ -157,7 +157,7 @@ namespace Identity.Migrations
                             CategoryId = 1,
                             CommentsCount = 0,
                             Content = "Про спорт и все такое",
-                            DateCreated = new DateTime(2022, 5, 17, 10, 27, 45, 31, DateTimeKind.Utc).AddTicks(5973),
+                            DateCreated = new DateTime(2022, 5, 18, 14, 57, 20, 156, DateTimeKind.Utc).AddTicks(6087),
                             Description = "Описание спорта",
                             RatingCount = 0,
                             Title = "Спорт"
@@ -169,7 +169,7 @@ namespace Identity.Migrations
                             CategoryId = 2,
                             CommentsCount = 0,
                             Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 5, 17, 10, 27, 45, 31, DateTimeKind.Utc).AddTicks(5977),
+                            DateCreated = new DateTime(2022, 5, 18, 14, 57, 20, 156, DateTimeKind.Utc).AddTicks(6092),
                             Description = "Описание киберспорта",
                             RatingCount = 0,
                             Title = "Киберспорт"
@@ -181,7 +181,7 @@ namespace Identity.Migrations
                             CategoryId = 2,
                             CommentsCount = 0,
                             Content = "Про киберспорт и все такое",
-                            DateCreated = new DateTime(2022, 5, 17, 10, 27, 45, 31, DateTimeKind.Utc).AddTicks(5978),
+                            DateCreated = new DateTime(2022, 5, 18, 14, 57, 20, 156, DateTimeKind.Utc).AddTicks(6093),
                             Description = "Описание киберспорта",
                             RatingCount = 0,
                             Title = "Киберспорт"
@@ -193,7 +193,7 @@ namespace Identity.Migrations
                             CategoryId = 3,
                             CommentsCount = 0,
                             Content = "Про спортмашины и все такое",
-                            DateCreated = new DateTime(2022, 5, 17, 10, 27, 45, 31, DateTimeKind.Utc).AddTicks(5979),
+                            DateCreated = new DateTime(2022, 5, 18, 14, 57, 20, 156, DateTimeKind.Utc).AddTicks(6094),
                             Description = "Описание спортмашины",
                             RatingCount = 0,
                             Title = "Cпортмашины"
@@ -366,7 +366,7 @@ namespace Identity.Migrations
                             Id = 1,
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             Content = "Норм тема",
-                            CreatedDate = new DateTime(2022, 5, 17, 10, 27, 45, 31, DateTimeKind.Utc).AddTicks(6000),
+                            CreatedDate = new DateTime(2022, 5, 18, 14, 57, 20, 156, DateTimeKind.Utc).AddTicks(6126),
                             PostId = 1
                         },
                         new
@@ -374,7 +374,7 @@ namespace Identity.Migrations
                             Id = 2,
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             Content = "Норм тема",
-                            CreatedDate = new DateTime(2022, 5, 17, 10, 27, 45, 31, DateTimeKind.Utc).AddTicks(6001),
+                            CreatedDate = new DateTime(2022, 5, 18, 14, 57, 20, 156, DateTimeKind.Utc).AddTicks(6128),
                             PostId = 1
                         },
                         new
@@ -382,7 +382,7 @@ namespace Identity.Migrations
                             Id = 3,
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             Content = "Норм тема",
-                            CreatedDate = new DateTime(2022, 5, 17, 10, 27, 45, 31, DateTimeKind.Utc).AddTicks(6002),
+                            CreatedDate = new DateTime(2022, 5, 18, 14, 57, 20, 156, DateTimeKind.Utc).AddTicks(6129),
                             PostId = 2
                         },
                         new
@@ -390,7 +390,7 @@ namespace Identity.Migrations
                             Id = 4,
                             ApplicationUserId = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             Content = "Норм тема",
-                            CreatedDate = new DateTime(2022, 5, 17, 10, 27, 45, 31, DateTimeKind.Utc).AddTicks(6003),
+                            CreatedDate = new DateTime(2022, 5, 18, 14, 57, 20, 156, DateTimeKind.Utc).AddTicks(6129),
                             PostId = 2
                         });
                 });
@@ -466,6 +466,9 @@ namespace Identity.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("ImageName")
+                        .HasColumnType("text");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
 
@@ -521,14 +524,14 @@ namespace Identity.Migrations
                         {
                             Id = "88aec81d-b5b0-45f3-8721-8d41560b02f7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "55d18e24-8a52-47b6-92a1-23a913c1ec59",
+                            ConcurrencyStamp = "78ea9b2c-694f-4379-8f61-2e9c9cdc3384",
                             Email = "1@mail.ru",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "EtoHash",
                             PhoneNumberConfirmed = false,
                             PostsCount = 0,
-                            SecurityStamp = "47f178e0-c1b1-40bd-940b-fd96cae86be0",
+                            SecurityStamp = "eab4f21e-3495-4be4-9f39-2f476b475c21",
                             TwoFactorEnabled = false,
                             UserName = "Vanya"
                         });
