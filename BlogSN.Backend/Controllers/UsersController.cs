@@ -40,6 +40,12 @@ namespace BlogSN.Backend.Controllers
             return Ok(await _service.GetCommentsByUserId(userId, cancellationToken));
         }
 
+        [HttpGet("{userId}/ratings")]
+        public async Task<ActionResult<IEnumerable<Post>>> GetRattingByUserId(string userId, CancellationToken cancellationToken)
+        {
+            return Ok(await _service.GetRatingsByUserId(userId, cancellationToken));
+        }
+
         [HttpDelete("{userId}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteUserByUserId(string userId, CancellationToken cancellationToken)
@@ -74,11 +80,20 @@ namespace BlogSN.Backend.Controllers
             return NoContent();
         }
 
-        [HttpPut("{userId}/changeRole")]
+        [HttpPut("{userId}/changeRoleToAdmin")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateUserRoleToAdminById(string userId, CancellationToken cancellationToken)
         {
             await _service.UpdateUserRoleToAdminById(userId, cancellationToken);
+
+            return NoContent();
+        }
+
+        [HttpPut("{userId}/changeRoleToUser")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UpdateUserRoleToUserById(string userId, CancellationToken cancellationToken)
+        {
+            await _service.UpdateUserRoleToUserById(userId, cancellationToken);
 
             return NoContent();
         }

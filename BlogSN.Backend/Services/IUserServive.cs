@@ -21,5 +21,9 @@ namespace BlogSN.Backend.Services
         public Task UpdateUserEmailById(string userId, string newEmail, CancellationToken cancellationToken);
 
         public Task UpdateUserRoleToAdminById(string userId, CancellationToken cancellationToken);
+
+        public Task UpdateUserRoleToUserById(string userId, CancellationToken cancellationToken);
+
+        public Task<IEnumerable<Rating>> GetRatingsByUserId(string userId, CancellationToken cancellationToken);
     }
 }
