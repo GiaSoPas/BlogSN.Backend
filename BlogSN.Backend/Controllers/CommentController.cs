@@ -19,6 +19,7 @@ namespace BlogSN.Backend.Controllers
 
         [HttpPost]
         [Authorize]
+        //gfdg
         public async Task<ActionResult<Comment>> CreateComment(Comment comment, CancellationToken cancellationToken)
         {
             await _service.CreateComment(comment, cancellationToken);
