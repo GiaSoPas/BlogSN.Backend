@@ -4,7 +4,7 @@
 ---
 ### Demo
 
-[![Demo](https://img.shields.io/badge/DEMO-Disabled--now-red?style=for-the-badge)](http://blogsn-lb-438498043.eu-central-1.elb.amazonaws.com/)
+[![Demo](https://img.shields.io/badge/DEMO-available-green?style=for-the-badge)](http://blogsn-lb-438498043.eu-central-1.elb.amazonaws.com/)
 
 ### Toolset
 - .Net Core
